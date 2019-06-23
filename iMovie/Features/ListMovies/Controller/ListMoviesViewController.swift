@@ -10,6 +10,17 @@ import Foundation
 import UIKit
 
 class ListMoviesViewController: UIViewController {
+    var viewModel: ListMoviesViewModel?
+    
+    init(viewModel: ListMoviesViewModel = ListMoviesViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.viewModel = nil
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

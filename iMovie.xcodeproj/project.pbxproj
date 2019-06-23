@@ -34,6 +34,8 @@
 		2FD8DEBD22C039DC00D72C9D /* AppDelegate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEBC22C039DC00D72C9D /* AppDelegate+Ext.swift */; };
 		2FD8DEBF22C03A3A00D72C9D /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEBE22C03A3A00D72C9D /* ListMoviesViewController.swift */; };
 		2FD8DEC122C03AA600D72C9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD8DEC022C03AA600D72C9D /* Default-568h@2x.png */; };
+		2FD8DEC322C03C0200D72C9D /* ListMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEC222C03C0200D72C9D /* ListMoviesViewModel.swift */; };
+		2FD8DEC522C03D3900D72C9D /* ListMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEC422C03D3900D72C9D /* ListMoviesModel.swift */; };
 		67E2325EDFE6A4786D5173DC /* Pods_iMovieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C899D6779CD26E461472EF /* Pods_iMovieTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +89,8 @@
 		2FD8DEBC22C039DC00D72C9D /* AppDelegate+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Ext.swift"; sourceTree = "<group>"; };
 		2FD8DEBE22C03A3A00D72C9D /* ListMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
 		2FD8DEC022C03AA600D72C9D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2FD8DEC222C03C0200D72C9D /* ListMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewModel.swift; sourceTree = "<group>"; };
+		2FD8DEC422C03D3900D72C9D /* ListMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesModel.swift; sourceTree = "<group>"; };
 		383F5783B957D0D8E8F67194 /* Pods-iMovieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F56F1ABB40269446BC35D7F /* Pods-iMovieUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovieUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6298CBAB00DA76966EE61272 /* Pods-iMovieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMovieTests/Pods-iMovieTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 		2F2E23BA22C0332200EAA5D4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8DEC222C03C0200D72C9D /* ListMoviesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 		2F2E23BD22C0335500EAA5D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8DEC422C03D3900D72C9D /* ListMoviesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 			files = (
 				2F2E23B222C0321500EAA5D4 /* EndPointType.swift in Sources */,
 				2F2E239622C0320500EAA5D4 /* ToastView.swift in Sources */,
+				2FD8DEC522C03D3900D72C9D /* ListMoviesModel.swift in Sources */,
 				2FD8DEBD22C039DC00D72C9D /* AppDelegate+Ext.swift in Sources */,
 				2F2E23AA22C0321500EAA5D4 /* ParameterEnconding.swift in Sources */,
 				2F2E23B022C0321500EAA5D4 /* HTTPMethod.swift in Sources */,
@@ -707,6 +714,7 @@
 				2FD8DEBF22C03A3A00D72C9D /* ListMoviesViewController.swift in Sources */,
 				2F2E23AD22C0321500EAA5D4 /* NetworkManager.swift in Sources */,
 				2F2E23AF22C0321500EAA5D4 /* HTTPTask.swift in Sources */,
+				2FD8DEC322C03C0200D72C9D /* ListMoviesViewModel.swift in Sources */,
 				2F2E23B122C0321500EAA5D4 /* Router.swift in Sources */,
 				2F2E236122C02FA900EAA5D4 /* AppDelegate.swift in Sources */,
 				2F2E23AC22C0321500EAA5D4 /* URLParameterEnconding.swift in Sources */,
