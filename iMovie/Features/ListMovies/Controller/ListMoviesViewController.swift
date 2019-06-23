@@ -24,6 +24,10 @@ class ListMoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setup()
+    }
+    
+    func setup() {
+        self.title = "iMovies"
     }
 }

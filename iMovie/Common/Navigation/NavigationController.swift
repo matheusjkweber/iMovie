@@ -11,4 +11,12 @@ import UIKit
 
 class NavigationController: UINavigationController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+    }
+    
+    func setup() {
+        self.navigationBar.barTintColor = UIColor.secondaryColor
+    }
 }
