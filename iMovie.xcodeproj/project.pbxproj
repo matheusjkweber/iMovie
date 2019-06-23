@@ -29,6 +29,11 @@
 		2F2E23B022C0321500EAA5D4 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E23A622C0321500EAA5D4 /* HTTPMethod.swift */; };
 		2F2E23B122C0321500EAA5D4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E23A722C0321500EAA5D4 /* Router.swift */; };
 		2F2E23B222C0321500EAA5D4 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E23A822C0321500EAA5D4 /* EndPointType.swift */; };
+		2FD8DEB822C0348B00D72C9D /* ListMoviesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FD8DEB722C0348B00D72C9D /* ListMoviesView.xib */; };
+		2FD8DEBB22C039B100D72C9D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEBA22C039B100D72C9D /* NavigationController.swift */; };
+		2FD8DEBD22C039DC00D72C9D /* AppDelegate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEBC22C039DC00D72C9D /* AppDelegate+Ext.swift */; };
+		2FD8DEBF22C03A3A00D72C9D /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8DEBE22C03A3A00D72C9D /* ListMoviesViewController.swift */; };
+		2FD8DEC122C03AA600D72C9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD8DEC022C03AA600D72C9D /* Default-568h@2x.png */; };
 		67E2325EDFE6A4786D5173DC /* Pods_iMovieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C899D6779CD26E461472EF /* Pods_iMovieTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +82,11 @@
 		2F2E23A622C0321500EAA5D4 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		2F2E23A722C0321500EAA5D4 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2F2E23A822C0321500EAA5D4 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		2FD8DEB722C0348B00D72C9D /* ListMoviesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListMoviesView.xib; sourceTree = "<group>"; };
+		2FD8DEBA22C039B100D72C9D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		2FD8DEBC22C039DC00D72C9D /* AppDelegate+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Ext.swift"; sourceTree = "<group>"; };
+		2FD8DEBE22C03A3A00D72C9D /* ListMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
+		2FD8DEC022C03AA600D72C9D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		383F5783B957D0D8E8F67194 /* Pods-iMovieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F56F1ABB40269446BC35D7F /* Pods-iMovieUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovieUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6298CBAB00DA76966EE61272 /* Pods-iMovieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMovieTests/Pods-iMovieTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +128,7 @@
 		2F2E235422C02FA900EAA5D4 = {
 			isa = PBXGroup;
 			children = (
+				2FD8DEC022C03AA600D72C9D /* Default-568h@2x.png */,
 				2F2E235F22C02FA900EAA5D4 /* iMovie */,
 				2F2E237422C02FAA00EAA5D4 /* iMovieTests */,
 				2F2E237F22C02FAA00EAA5D4 /* iMovieUITests */,
@@ -170,6 +181,7 @@
 		2F2E238E22C0320400EAA5D4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8DEB922C0399F00D72C9D /* Navigation */,
 				2F2E238F22C0320400EAA5D4 /* Utils */,
 				2F2E239322C0320400EAA5D4 /* Style */,
 			);
@@ -256,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				2F2E236022C02FA900EAA5D4 /* AppDelegate.swift */,
+				2FD8DEBC22C039DC00D72C9D /* AppDelegate+Ext.swift */,
 				2F2E236922C02FAA00EAA5D4 /* LaunchScreen.storyboard */,
 				2F2E236722C02FAA00EAA5D4 /* Assets.xcassets */,
 				2F2E236C22C02FAA00EAA5D4 /* Info.plist */,
@@ -309,6 +322,7 @@
 		2F2E23B822C0331100EAA5D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8DEBE22C03A3A00D72C9D /* ListMoviesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -330,6 +344,7 @@
 		2F2E23BB22C0332800EAA5D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8DEB722C0348B00D72C9D /* ListMoviesView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,6 +403,14 @@
 			children = (
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		2FD8DEB922C0399F00D72C9D /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2FD8DEBA22C039B100D72C9D /* NavigationController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		7AE934913F96B6584EFF1AD6 /* Frameworks */ = {
@@ -522,6 +545,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FD8DEB822C0348B00D72C9D /* ListMoviesView.xib in Resources */,
+				2FD8DEC122C03AA600D72C9D /* Default-568h@2x.png in Resources */,
 				2F2E236B22C02FAA00EAA5D4 /* LaunchScreen.storyboard in Resources */,
 				2F2E236822C02FAA00EAA5D4 /* Assets.xcassets in Resources */,
 			);
@@ -673,10 +698,13 @@
 			files = (
 				2F2E23B222C0321500EAA5D4 /* EndPointType.swift in Sources */,
 				2F2E239622C0320500EAA5D4 /* ToastView.swift in Sources */,
+				2FD8DEBD22C039DC00D72C9D /* AppDelegate+Ext.swift in Sources */,
 				2F2E23AA22C0321500EAA5D4 /* ParameterEnconding.swift in Sources */,
 				2F2E23B022C0321500EAA5D4 /* HTTPMethod.swift in Sources */,
 				2F2E23A922C0321500EAA5D4 /* NetworkManagerMock.swift in Sources */,
+				2FD8DEBB22C039B100D72C9D /* NavigationController.swift in Sources */,
 				2F2E236322C02FA900EAA5D4 /* ViewController.swift in Sources */,
+				2FD8DEBF22C03A3A00D72C9D /* ListMoviesViewController.swift in Sources */,
 				2F2E23AD22C0321500EAA5D4 /* NetworkManager.swift in Sources */,
 				2F2E23AF22C0321500EAA5D4 /* HTTPTask.swift in Sources */,
 				2F2E23B122C0321500EAA5D4 /* Router.swift in Sources */,
@@ -855,7 +883,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = iMovie/Info.plist;
+				INFOPLIST_FILE = iMovie/System/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -873,7 +901,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = iMovie/Info.plist;
+				INFOPLIST_FILE = iMovie/System/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

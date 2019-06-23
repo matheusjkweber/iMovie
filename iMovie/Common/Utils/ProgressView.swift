@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SnapKit
+
 open class ProgressView {
     var containerView = UIView()
     var progressView = UIView()
@@ -25,7 +25,7 @@ open class ProgressView {
         progressView.layer.cornerRadius = 10
         
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         
         progressView.addSubview(activityIndicator)
         containerView.addSubview(progressView)
@@ -33,18 +33,18 @@ open class ProgressView {
         
         activityIndicator.startAnimating()
         
-        containerView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view.snp.edges)
-        }
-        
-        progressView.snp.makeConstraints { (make) in
-            make.center.equalTo(containerView)
-            make.width.height.equalTo(80)
-        }
-        
-        activityIndicator.snp.makeConstraints { (make) in
-            make.center.equalTo(progressView)
-        }
+//        containerView.snp.makeConstraints { (make) in
+//            make.edges.equalTo(view.snp.edges)
+//        }
+//        
+//        progressView.snp.makeConstraints { (make) in
+//            make.center.equalTo(containerView)
+//            make.width.height.equalTo(80)
+//        }
+//        
+//        activityIndicator.snp.makeConstraints { (make) in
+//            make.center.equalTo(progressView)
+//        }
     }
     
     open func hideProgressView() {
