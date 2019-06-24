@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
  
-class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ListMoviesViewModelDelegate, StateProtocol {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -17,13 +18,18 @@ class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UI
     private let refreshControl = UIRefreshControl()
     private let cellIdentifier = "movieCollectionViewCell"
     
-    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(movies: [], page: 1, category: .popular))) {
+    var state: ViewState<ButtonAction>
+    private var errorView: ErrorView?
+    
+    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(movies: [], page: 1, category: .popular), state: .loading), state: ViewState<ButtonAction> = .loading) {
         self.viewModel = viewModel
+        self.state = state
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.viewModel = nil
+        self.state = .loading
         super.init(coder: aDecoder)
     }
     
@@ -35,6 +41,9 @@ class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UI
     
     func setup() {
         self.title = "iMovies"
+        self.errorView = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil)?.first as? ErrorView
+        self.viewModel?.delegate = self
+        self.viewModel?.getPopularMovies()
         self.setupCollectionView()
     }
     
@@ -56,8 +65,8 @@ class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func populateMovies() {
-        let arrayMovies = [MovieModel(imagePath: "", name: "Test"), MovieModel(imagePath: "", name: "Test 1"), MovieModel(imagePath: "", name: "Test 2"), MovieModel(imagePath: "", name: "Test 3")]
-        self.viewModel?.rawMovies = arrayMovies
+//        let arrayMovies = [MovieModel(imagePath: "", name: "Test"), MovieModel(imagePath: "", name: "Test 1"), MovieModel(imagePath: "", name: "Test 2"), MovieModel(imagePath: "", name: "Test 3")]
+//        self.viewModel?.rawMovies = arrayMovies
     }
     
     @IBAction func segmentedDidChange(_ sender: Any) {
@@ -81,12 +90,12 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let movieModel = viewModel?.rawMovies[indexPath.row] else {
             fatalError("Must be provide a ListMoviesCollectionViewCell")
         }
         
         cell.setup(
-            movieModel: viewModel?.rawMovies[indexPath.row] ?? MovieModel(imagePath: "", name: "")
+            movieModel: movieModel
         )
         
         return cell
@@ -99,7 +108,9 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(MovieDetailsViewController(), animated: true)
+        if let movieModel = viewModel?.rawMovies[indexPath.row] {
+            self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
+        }
     }
 }
 
@@ -111,5 +122,42 @@ extension ListMoviesViewController {
     
     func stopRefresher(){
         refreshControl.endRefreshing()
+    }
+}
+
+//MARK: ViewModel delegate
+extension ListMoviesViewController {
+    func didUpdateLayout(state: ViewState<ButtonAction>) {
+        self.state = state
+        setupUIStatus()
+    }
+    
+    func didUpdateData() {
+        self.collectionView.reloadData()
+    }
+}
+
+//MARK: State Protocol
+extension ListMoviesViewController {
+    func getView() -> UIView {
+        return self.view
+    }
+    
+    func getRequestErrorView() -> ErrorView? {
+        errorView?.setup(errorMessage: "Some error has ocurred, please try again.")
+        return errorView
+    }
+    
+    func getInternetErrorView() -> ErrorView? {
+        errorView?.setup(errorMessage: "No internet connection, please connect to internet and try again")
+        return errorView
+    }
+    
+    func setupForSuccess() {
+        
+    }
+    
+    func setupLayoutForSuccess() {
+        
     }
 }

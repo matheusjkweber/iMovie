@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorView" customModule="iMovie" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ErrorView" customModule="iMovie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_error_outline" translatesAutoresizingMaskIntoConstraints="NO" id="U9z-Yh-MdG">
+                    <rect key="frame" x="87" y="162.5" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="XoT-tA-c5K"/>
+                        <constraint firstAttribute="width" constant="240" id="b0C-hZ-8cS"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ERROR!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXW-du-KMS">
+                    <rect key="frame" x="167" y="322" width="80" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4N-O5-hwV">
+                    <rect key="frame" x="20" y="370" width="374" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYl-Ng-jCc">
+                    <rect key="frame" x="167.5" y="410.5" width="79" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="79" id="rhj-Iv-bUy"/>
+                    </constraints>
+                    <state key="normal" title="Try again"/>
+                    <connections>
+                        <action selector="didClickTryAgainButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="GzN-EE-eKZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HXW-du-KMS" firstAttribute="top" secondItem="U9z-Yh-MdG" secondAttribute="bottom" constant="31.5" id="1mL-Vx-JDm"/>
+                <constraint firstItem="j4N-O5-hwV" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="MHz-dk-uxX"/>
+                <constraint firstItem="wYl-Ng-jCc" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="T1J-tp-Riq"/>
+                <constraint firstItem="j4N-O5-hwV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Yfz-fn-kjl"/>
+                <constraint firstItem="U9z-Yh-MdG" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.5" id="Yyq-F5-Av2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="j4N-O5-hwV" secondAttribute="trailing" constant="20" id="Zri-Ae-siE"/>
+                <constraint firstItem="HXW-du-KMS" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="f8n-QJ-3Nz"/>
+                <constraint firstItem="U9z-Yh-MdG" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="fPZ-TU-tQt"/>
+                <constraint firstItem="j4N-O5-hwV" firstAttribute="top" secondItem="HXW-du-KMS" secondAttribute="bottom" constant="20" id="ghP-0O-k7g"/>
+                <constraint firstItem="wYl-Ng-jCc" firstAttribute="top" secondItem="j4N-O5-hwV" secondAttribute="bottom" constant="20" id="juc-z6-SQa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="messageLabel" destination="j4N-O5-hwV" id="jWg-ma-yrB"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="119.86607142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_error_outline" width="24" height="24"/>
+    </resources>
+</document>

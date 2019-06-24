@@ -11,7 +11,7 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
     var viewModel: MovieDetailsViewModel?
     
-    init(viewModel: MovieDetailsViewModel = MovieDetailsViewModel(model: MovieModel(imagePath: "", name: ""))) {
+    init(viewModel: MovieDetailsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

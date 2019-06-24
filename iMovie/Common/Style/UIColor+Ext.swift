@@ -14,6 +14,10 @@ extension UIColor {
         return #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
     
+    static var disabledColor: UIColor {
+        return #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+    }
+    
     
     static var purple: UIColor {
         return #colorLiteral(red: 0.431372549, green: 0.168627451, blue: 0.4666666667, alpha: 1)

@@ -28,7 +28,7 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
 
 extension ListMoviesCollectionViewCell {
     func setup(movieModel: MovieModel) {
-        movieTitleLabel.text = movieModel.name
+        movieTitleLabel.text = movieModel.title
         
         setLayout()
     }

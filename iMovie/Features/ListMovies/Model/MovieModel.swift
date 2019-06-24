@@ -8,12 +8,20 @@
 
 import Foundation
 
-class MovieModel {
-    let imagePath: String
-    let name: String
+class MovieModel: Codable {
+    let id: Int
+    let title: String
+    let poster_path: String
+    let vote_count: Int
+    let video: Bool
+    let vote_average: Float
+    let popularity: Float
+    let original_language: String
+    let original_title: String
+    let genre_ids: [Int]
+    let backdrop_path: String
+    let adult: Bool
+    let overview: String
+    let release_date: String
     
-    init(imagePath: String, name: String) {
-        self.imagePath = imagePath
-        self.name = name
-    }
 }
