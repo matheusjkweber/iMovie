@@ -9,9 +9,16 @@
 import Foundation
 
 class ListMoviesViewModel {
-    private let listMoviesModel: ListMoviesModel
+    private let model: ListMoviesModel
     
-    public init(listMoviesModel: ListMoviesModel = ListMoviesModel()) {
-        self.listMoviesModel = listMoviesModel
+    public init(model: ListMoviesModel) {
+        self.model = model
+        self.rawMovies = model.movies
+    }
+    
+    var rawMovies: [MovieModel] {
+        willSet(newMovies) {
+            model.movies = newMovies
+        }
     }
 }

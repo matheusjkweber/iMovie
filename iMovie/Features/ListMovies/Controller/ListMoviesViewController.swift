@@ -8,11 +8,14 @@
 
 import Foundation
 import UIKit
-
-class ListMoviesViewController: UIViewController {
+ 
+class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var collectionView: UICollectionView!
     var viewModel: ListMoviesViewModel?
+    private let refreshControl = UIRefreshControl()
+    private let cellIdentifier = "movieCollectionViewCell"
     
-    init(viewModel: ListMoviesViewModel = ListMoviesViewModel()) {
+    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(movies: [], page: 1, category: .popular))) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,10 +27,73 @@ class ListMoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        populateMovies()
         setup()
     }
     
     func setup() {
         self.title = "iMovies"
+        self.setupCollectionView()
+    }
+    
+    func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: "ListMoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.reloadData()
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 8
+        collectionView.collectionViewLayout = layout
+        
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+    
+    func populateMovies() {
+        let arrayMovies = [MovieModel(imagePath: "", name: "Test"), MovieModel(imagePath: "", name: "Test 1"), MovieModel(imagePath: "", name: "Test 2"), MovieModel(imagePath: "", name: "Test 3")]
+        self.viewModel?.rawMovies = arrayMovies
+    }
+}
+
+extension ListMoviesViewController {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel?.rawMovies.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell else {
+            fatalError("Must be provide a ListMoviesCollectionViewCell")
+        }
+        
+        cell.setup(
+            movieModel: viewModel?.rawMovies[indexPath.row] ?? MovieModel(imagePath: "", name: "")
+        )
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 125, height: 125)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
+
+//MARK: RefreshControl
+extension ListMoviesViewController {
+    @objc func refresh(_ sender: Any) {
+        
+    }
+    
+    func stopRefresher(){
+        refreshControl.endRefreshing()
     }
 }

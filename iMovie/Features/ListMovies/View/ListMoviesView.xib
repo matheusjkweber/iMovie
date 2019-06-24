@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListMoviesViewController" customModule="iMovie" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="SUH-tR-xdG" id="EQN-qb-3WK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Oou-BY-K9p"/>
             </connections>
         </placeholder>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ary-Wu-W28">
-                    <rect key="frame" x="0.0" y="48" width="414" height="29"/>
+                    <rect key="frame" x="8" y="48" width="398" height="29"/>
                     <segments>
                         <segment title="Popular"/>
                         <segment title="Top Rated"/>
@@ -42,8 +43,8 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="SUH-tR-xdG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7Q8-AM-ChJ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ary-Wu-W28" secondAttribute="trailing" id="8Cu-FI-lpn"/>
-                <constraint firstItem="ary-Wu-W28" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bFF-dj-nUc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ary-Wu-W28" secondAttribute="trailing" constant="8" id="8Cu-FI-lpn"/>
+                <constraint firstItem="ary-Wu-W28" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="bFF-dj-nUc"/>
                 <constraint firstItem="ary-Wu-W28" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="o9a-DL-zsU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SUH-tR-xdG" secondAttribute="trailing" id="oQ5-Ll-U39"/>
                 <constraint firstItem="SUH-tR-xdG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="u2N-Hd-HyU"/>
