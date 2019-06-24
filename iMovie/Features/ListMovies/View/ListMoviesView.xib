@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListMoviesViewController" customModule="iMovie" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="SUH-tR-xdG" id="EQN-qb-3WK"/>
+                <outlet property="segmentedControl" destination="ary-Wu-W28" id="cyV-TN-5f8"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Oou-BY-K9p"/>
             </connections>
         </placeholder>
@@ -28,6 +29,9 @@
                         <segment title="Top Rated"/>
                         <segment title="Upcoming"/>
                     </segments>
+                    <connections>
+                        <action selector="segmentedDidChange:" destination="-1" eventType="valueChanged" id="T37-Ns-oXb"/>
+                    </connections>
                 </segmentedControl>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SUH-tR-xdG">
                     <rect key="frame" x="0.0" y="80" width="414" height="782"/>

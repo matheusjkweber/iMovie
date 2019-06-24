@@ -11,6 +11,8 @@ import UIKit
  
 class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     var viewModel: ListMoviesViewModel?
     private let refreshControl = UIRefreshControl()
     private let cellIdentifier = "movieCollectionViewCell"
@@ -57,8 +59,22 @@ class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UI
         let arrayMovies = [MovieModel(imagePath: "", name: "Test"), MovieModel(imagePath: "", name: "Test 1"), MovieModel(imagePath: "", name: "Test 2"), MovieModel(imagePath: "", name: "Test 3")]
         self.viewModel?.rawMovies = arrayMovies
     }
+    
+    @IBAction func segmentedDidChange(_ sender: Any) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            self.viewModel?.category = .popular
+        case 1:
+            self.viewModel?.category = .topRated
+        case 2:
+            self.viewModel?.category = .upcoming
+        default:
+            break
+        }
+    }
 }
 
+//MARK: CollectionView
 extension ListMoviesViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel?.rawMovies.count ?? 0

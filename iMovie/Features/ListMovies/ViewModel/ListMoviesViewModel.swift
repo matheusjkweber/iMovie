@@ -14,11 +14,18 @@ class ListMoviesViewModel {
     public init(model: ListMoviesModel) {
         self.model = model
         self.rawMovies = model.movies
+        self.category = model.category
     }
     
     var rawMovies: [MovieModel] {
         willSet(newMovies) {
             model.movies = newMovies
+        }
+    }
+    
+    var category: TypeMovie {
+        willSet(newCategory) {
+            model.category = newCategory
         }
     }
 }
