@@ -99,7 +99,7 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        self.navigationController?.pushViewController(MovieDetailsViewController(), animated: true)
     }
 }
 
