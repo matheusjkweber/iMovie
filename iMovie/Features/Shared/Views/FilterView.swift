@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol FilterViewDelegate: class {
+    func didSelectFilter(filterValue: FilterValue)
+}
+
 class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource  {
     
     var filterValue: FilterValue = .none
+    weak var delegate: FilterViewDelegate?
     
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     
     override func awakeFromNib() {
@@ -20,11 +26,24 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource  {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override func layoutSubviews() {
+        makeCornerRadius()
+    }
+    
+    private func commonInit() {
+        Bundle.main.loadNibNamed("FilterView", owner: self, options: nil)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     func setup() {
@@ -32,17 +51,21 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource  {
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         self.translatesAutoresizingMaskIntoConstraints = false
-        makeCornerRadius()
     }
     
     func makeCornerRadius() {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 10.0, height: 10.0))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
+        let path = UIBezierPath(roundedRect:self.bounds,
+                                byRoundingCorners:[.topRight, .topLeft],
+                                cornerRadii: CGSize(width: 15, height:  15))
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+
+        self.layer.mask = maskLayer
     }
+    
     @IBAction func didClickApplyButton(_ sender: Any) {
-        
+        self.delegate?.didSelectFilter(filterValue: filterValue)
     }
 }
 

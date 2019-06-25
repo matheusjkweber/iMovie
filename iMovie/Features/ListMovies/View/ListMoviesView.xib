@@ -13,6 +13,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListMoviesViewController" customModule="iMovie" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="SUH-tR-xdG" id="EQN-qb-3WK"/>
+                <outlet property="filterView" destination="Fzi-Sg-ltE" id="83a-MZ-NX6"/>
+                <outlet property="filterViewBottomConstraint" destination="Rpt-yW-CZA" id="63U-pn-PrK"/>
+                <outlet property="filterViewHeightConstraint" destination="Rw1-pr-ceu" id="SAo-uY-ccq"/>
                 <outlet property="segmentedControl" destination="ary-Wu-W28" id="cyV-TN-5f8"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Oou-BY-K9p"/>
             </connections>
@@ -43,14 +46,24 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzi-Sg-ltE" customClass="FilterView" customModule="iMovie" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="862" width="414" height="120"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="Rw1-pr-ceu"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="SUH-tR-xdG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7Q8-AM-ChJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ary-Wu-W28" secondAttribute="trailing" constant="8" id="8Cu-FI-lpn"/>
+                <constraint firstItem="Fzi-Sg-ltE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BzB-Zu-tdO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fzi-Sg-ltE" secondAttribute="bottom" constant="-120" id="Rpt-yW-CZA"/>
                 <constraint firstItem="ary-Wu-W28" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="bFF-dj-nUc"/>
                 <constraint firstItem="ary-Wu-W28" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="o9a-DL-zsU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SUH-tR-xdG" secondAttribute="trailing" id="oQ5-Ll-U39"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fzi-Sg-ltE" secondAttribute="trailing" id="qRZ-TZ-R3U"/>
                 <constraint firstItem="SUH-tR-xdG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="u2N-Hd-HyU"/>
                 <constraint firstItem="SUH-tR-xdG" firstAttribute="top" secondItem="ary-Wu-W28" secondAttribute="bottom" constant="4" id="xOZ-IT-tqO"/>
             </constraints>

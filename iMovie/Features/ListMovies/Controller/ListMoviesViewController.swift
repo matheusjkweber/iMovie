@@ -15,7 +15,7 @@ enum FilterValue: String {
     case none = "None"
 }
 
-class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ListMoviesViewModelDelegate {
+class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ListMoviesViewModelDelegate, FilterViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -24,6 +24,10 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
     private let refreshControl = UIRefreshControl()
     private let cellIdentifier = "movieCollectionViewCell"
         
+    @IBOutlet weak var filterView: FilterView!
+    @IBOutlet weak var filterViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var filterViewBottomConstraint: NSLayoutConstraint!
     init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(movies: [], page: 1, category: .popular), state: .loading), state: ViewState<ButtonAction> = .loading) {
         self.viewModel = viewModel
         super.init(state: state)
@@ -43,6 +47,8 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
     func setup() {
         self.title = "iMovies"
         self.errorView = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil)?.first as? ErrorView
+        self.filterView.setup()
+        self.filterView.delegate = self
         
         self.viewModel?.delegate = self
         self.viewModel?.getPopularMovies()
@@ -138,5 +144,24 @@ extension ListMoviesViewController {
     
     func didUpdateData() {
         self.collectionView.reloadData()
+    }
+}
+
+//MARK: Filter actions
+extension ListMoviesViewController {
+    override func didClickedFilterButton() {
+        if self.filterViewBottomConstraint.constant == -120 {
+            self.filterViewBottomConstraint.constant = 0
+        } else {
+            self.filterViewBottomConstraint.constant = -120
+        }
+
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func didSelectFilter(filterValue: FilterValue) {
+        didClickedFilterButton()
     }
 }

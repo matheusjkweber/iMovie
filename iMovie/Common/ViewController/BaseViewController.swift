@@ -70,12 +70,7 @@ extension BaseViewController {
     }
     
     @objc func didClickedFilterButton() {
-        if let filterView = Bundle.main.loadNibNamed("FilterView", owner: filterView, options: nil)?.first as? FilterView {
-            filterView.setup()
-            
-            self.view.addSubview(filterView)
-            self.configureFilterViewLayout(filterView: filterView)
-        }
+        
     }
     
     @objc func didClickedSearchButton() {
