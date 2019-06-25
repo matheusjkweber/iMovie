@@ -24,4 +24,24 @@ class ListMoviesService {
             failure(error)
         }
     }
+    
+    func getTopRatedMovies(success: @escaping (_ notice: MoviesResponse) -> (),
+                          failure: @escaping (_ error: NetworkResponse) -> ()) {
+        
+        manager.request(request: TheMovieDataBaseAPI.movieTopRated, success: { (moviesResponse: MoviesResponse) in
+            success(moviesResponse)
+        }) { (error) in
+            failure(error)
+        }
+    }
+    
+    func getUpcomingMovies(success: @escaping (_ notice: MoviesResponse) -> (),
+                          failure: @escaping (_ error: NetworkResponse) -> ()) {
+        
+        manager.request(request: TheMovieDataBaseAPI.movieUpcoming, success: { (moviesResponse: MoviesResponse) in
+            success(moviesResponse)
+        }) { (error) in
+            failure(error)
+        }
+    }
 }

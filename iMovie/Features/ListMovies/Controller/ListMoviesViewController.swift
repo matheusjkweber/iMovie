@@ -28,7 +28,7 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
     @IBOutlet weak var filterViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var filterViewBottomConstraint: NSLayoutConstraint!
-    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(movies: [], page: 1, category: .popular), state: .loading), state: ViewState<ButtonAction> = .loading) {
+    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(page: 1, category: .popular), state: .loading), state: ViewState<ButtonAction> = .loading) {
         self.viewModel = viewModel
         super.init(state: state)
     }
@@ -96,11 +96,11 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
 //MARK: CollectionView
 extension ListMoviesViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel?.rawMovies.count ?? 0
+        return self.viewModel?.showingMovies.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let movieModel = viewModel?.rawMovies[indexPath.row] else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let movieModel = viewModel?.showingMovies[indexPath.row] else {
             fatalError("Must be provide a ListMoviesCollectionViewCell")
         }
         
@@ -118,7 +118,7 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let movieModel = viewModel?.rawMovies[indexPath.row] {
+        if let movieModel = viewModel?.showingMovies[indexPath.row] {
             self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
         }
     }

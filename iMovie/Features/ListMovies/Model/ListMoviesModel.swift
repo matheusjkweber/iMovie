@@ -15,12 +15,17 @@ enum TypeMovie: Int {
 }
 
 class ListMoviesModel {
-    var movies: [MovieModel]
+    var popular: [MovieModel]
+    var topRated: [MovieModel]
+    var upcoming: [MovieModel]
+    
     var page: Int
     var category: TypeMovie
     
-    init(movies: [MovieModel], page: Int, category: TypeMovie) {
-        self.movies = movies
+    init(popular: [MovieModel] = [], topRated: [MovieModel] = [], upcoming: [MovieModel] = [], page: Int, category: TypeMovie) {
+        self.popular = popular
+        self.topRated = topRated
+        self.upcoming = upcoming
         self.page = page
         self.category = category
     }

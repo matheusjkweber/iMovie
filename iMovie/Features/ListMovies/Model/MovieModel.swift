@@ -23,5 +23,4 @@ class MovieModel: Codable {
     let adult: Bool
     let overview: String
     let release_date: String
-    
 }
