@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum ViewState<ButtonAction> {
+    case internetError(ButtonAction)
+    case success
+    case requestError(ButtonAction)
+    case loading
+}
+
 typealias ButtonAction = () -> ()
 
 protocol StateProtocol {
@@ -57,11 +64,4 @@ extension StateProtocol {
         
         NSLayoutConstraint.activate([containerViewTopContraint, containerViewLeftContraint, containerViewRightContraint, containerViewBottomContraint])
     }
-}
-
-enum ViewState<ButtonAction> {
-    case internetError(ButtonAction)
-    case success
-    case requestError(ButtonAction)
-    case loading
 }

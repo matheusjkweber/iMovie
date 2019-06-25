@@ -8,8 +8,14 @@
 
 import Foundation
 import UIKit
- 
-class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ListMoviesViewModelDelegate, StateProtocol {
+
+enum FilterValue: String {
+    case movies = "Movies"
+    case tvShows = "TV Shows"
+    case none = "None"
+}
+
+class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ListMoviesViewModelDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -17,19 +23,14 @@ class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UI
     var viewModel: ListMoviesViewModel?
     private let refreshControl = UIRefreshControl()
     private let cellIdentifier = "movieCollectionViewCell"
-    
-    var state: ViewState<ButtonAction>
-    private var errorView: ErrorView?
-    
+        
     init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(movies: [], page: 1, category: .popular), state: .loading), state: ViewState<ButtonAction> = .loading) {
         self.viewModel = viewModel
-        self.state = state
-        super.init(nibName: nil, bundle: nil)
+        super.init(state: state)
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.viewModel = nil
-        self.state = .loading
         super.init(coder: aDecoder)
     }
     
@@ -42,8 +43,11 @@ class ListMoviesViewController: UIViewController, UICollectionViewDataSource, UI
     func setup() {
         self.title = "iMovies"
         self.errorView = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil)?.first as? ErrorView
+        
         self.viewModel?.delegate = self
         self.viewModel?.getPopularMovies()
+        
+        self.configureNavigationWithButtons()
         self.setupCollectionView()
     }
     
@@ -134,30 +138,5 @@ extension ListMoviesViewController {
     
     func didUpdateData() {
         self.collectionView.reloadData()
-    }
-}
-
-//MARK: State Protocol
-extension ListMoviesViewController {
-    func getView() -> UIView {
-        return self.view
-    }
-    
-    func getRequestErrorView() -> ErrorView? {
-        errorView?.setup(errorMessage: "Some error has ocurred, please try again.")
-        return errorView
-    }
-    
-    func getInternetErrorView() -> ErrorView? {
-        errorView?.setup(errorMessage: "No internet connection, please connect to internet and try again")
-        return errorView
-    }
-    
-    func setupForSuccess() {
-        
-    }
-    
-    func setupLayoutForSuccess() {
-        
     }
 }
