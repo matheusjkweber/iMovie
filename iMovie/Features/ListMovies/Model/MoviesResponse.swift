@@ -1,5 +1,5 @@
 //
-//  MoviesResponse.swift
+//  ItemResponse.swift
 //  iMovie
 //
 //  Created by Matheus Weber on 24/06/19.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-class MoviesResponse: Codable {
+class ItemResponse<T: ItemModel>: Codable {
     var page: Int
     var total_results: Int
     var total_pages: Int
-    var results: [MovieModel]
+    var results: [T]
 }

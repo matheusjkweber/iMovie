@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MovieModel: Codable {
+class MovieModel: ItemModel {
     let id: Int
     let title: String
     let poster_path: String
@@ -23,6 +23,25 @@ class MovieModel: Codable {
     let adult: Bool
     let overview: String
     let release_date: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case genre_ids
+        case original_title
+        case popularity
+        case origin_country
+        case vote_count
+        case first_air_date
+        case backdrop_path
+        case original_language
+        case vote_average
+        case overview
+        case poster_path
+        case video
+        case adult
+        case release_date
+    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -44,5 +63,7 @@ class MovieModel: Codable {
         
         self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
         self.release_date = try container.decodeIfPresent(String.self, forKey: .release_date) ?? ""
+        
+        super.init()
     }
 }

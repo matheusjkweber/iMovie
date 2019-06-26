@@ -97,16 +97,24 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
 //MARK: CollectionView
 extension ListMoviesViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel?.showingMovies.count ?? 0
+        return self.viewModel?.showingItems.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let movieModel = viewModel?.showingMovies[indexPath.row] else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let itemModel = viewModel?.showingItems[indexPath.row] else {
             fatalError("Must be provide a ListMoviesCollectionViewCell")
         }
         
+        var title = ""
+        
+        if let movieModel = itemModel as? MovieModel {
+            title = movieModel.title
+        } else if let tvShowModel = itemModel as? TVShowModel {
+            title = tvShowModel.name
+        }
+        
         cell.setup(
-            movieModel: movieModel
+            title: title
         )
         
         return cell
@@ -119,13 +127,13 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let movieModel = viewModel?.showingMovies[indexPath.row] {
+        if let movieModel = viewModel?.showingItems[indexPath.row] {
             self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let showingMovies = viewModel?.showingMovies {
+        if let showingMovies = viewModel?.showingItems {
             if indexPath.row == showingMovies.count - 1 {
                 viewModel?.loadNextPage()
             }

@@ -9,9 +9,9 @@
 import Foundation
 
 class MovieDetailsViewModel {
-    private let model: MovieModel
+    private let model: ItemModel
     
-    public init(model: MovieModel) {
+    public init(model: ItemModel) {
         self.model = model
     }
 }

@@ -43,20 +43,20 @@ class ListMoviesViewModel {
         }
     }
     
-    var showingMovies: [MovieModel] = []
+    var showingItems: [ItemModel] = []
     
     func getPopularMovies(forceInternet: Bool = false) {
         if self.model.popular.count <= self.model.pagePopular * itemsPerPage || forceInternet{
             self.state = .loading
             service.getPopularMovies(page: self.model.pagePopular,
-                                     success: { (moviesResponse) in
+                                     success: { (itemsResponse) in
                 DispatchQueue.main.async {
                     if self.model.popular.count == 0 || forceInternet {
-                        self.model.popular = moviesResponse.results
-                        self.showingMovies = moviesResponse.results
+                        self.model.popular = itemsResponse.results
+                        self.showingItems = itemsResponse.results
                     } else {
-                        self.model.popular += moviesResponse.results
-                        self.showingMovies += moviesResponse.results
+                        self.model.popular += itemsResponse.results
+                        self.showingItems += itemsResponse.results
                     }
                     
                     self.state = .success
@@ -77,7 +77,7 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingMovies = self.model.popular
+            showingItems = self.model.popular
             self.delegate?.didUpdateData()
         }
     }
@@ -86,14 +86,14 @@ class ListMoviesViewModel {
         if self.model.topRated.count <= self.model.pageTopRated * itemsPerPage || forceInternet {
             self.state = .loading
             service.getTopRatedMovies(page: self.model.pageTopRated,
-                                      success: { (moviesResponse) in
+                                      success: { (itemsResponse) in
                 DispatchQueue.main.async {
                     if self.model.topRated.count == 0 || forceInternet {
-                        self.model.topRated = moviesResponse.results
-                        self.showingMovies = moviesResponse.results
+                        self.model.topRated = itemsResponse.results
+                        self.showingItems = itemsResponse.results
                     } else {
-                        self.model.topRated += moviesResponse.results
-                        self.showingMovies += moviesResponse.results
+                        self.model.topRated += itemsResponse.results
+                        self.showingItems += itemsResponse.results
                     }
                     self.state = .success
                     self.delegate?.didUpdateData()
@@ -113,7 +113,7 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingMovies = self.model.topRated
+            showingItems = self.model.topRated
             self.delegate?.didUpdateData()
         }
     }
@@ -122,16 +122,16 @@ class ListMoviesViewModel {
         if self.model.upcoming.count <= self.model.pageUpcoming * itemsPerPage || forceInternet {
             self.state = .loading
             service.getUpcomingMovies(page: self.model.pageUpcoming,
-                                      success: { (moviesResponse) in
+                                      success: { (itemsResponse) in
                 DispatchQueue.main.async {
                     if self.model.upcoming.count == 0 || forceInternet{
-                        self.model.upcoming = moviesResponse.results
-                        self.showingMovies = moviesResponse.results
+                        self.model.upcoming = itemsResponse.results
+                        self.showingItems = itemsResponse.results
                     } else {
-                        self.model.upcoming += moviesResponse.results
-                        self.showingMovies += moviesResponse.results
+                        self.model.upcoming += itemsResponse.results
+                        self.showingItems += itemsResponse.results
                     }
-                    self.showingMovies = moviesResponse.results
+                    self.showingItems = itemsResponse.results
                     self.state = .success
                     self.delegate?.didUpdateData()
                 }
@@ -150,7 +150,7 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingMovies = self.model.upcoming
+            showingItems = self.model.upcoming
             self.delegate?.didUpdateData()
         }
     }
