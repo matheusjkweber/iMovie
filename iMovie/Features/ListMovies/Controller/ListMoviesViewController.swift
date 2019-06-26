@@ -28,7 +28,7 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
     @IBOutlet weak var filterViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var filterViewBottomConstraint: NSLayoutConstraint!
-    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(page: 1, category: .popular), state: .loading), state: ViewState<ButtonAction> = .loading) {
+    init(viewModel: ListMoviesViewModel = ListMoviesViewModel(model: ListMoviesModel(), state: .loading), state: ViewState<ButtonAction> = .loading) {
         self.viewModel = viewModel
         super.init(state: state)
     }
@@ -122,6 +122,14 @@ extension ListMoviesViewController {
             self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let showingMovies = viewModel?.showingMovies {
+            if indexPath.row == showingMovies.count - 1 {
+                viewModel?.loadNextPage()
+            }
+        }
+    }
 }
 
 //MARK: RefreshControl
@@ -143,7 +151,7 @@ extension ListMoviesViewController {
     }
     
     func didUpdateData() {
-        self.collectionView.reloadData()
+        self.collectionView.reloadSections(IndexSet(arrayLiteral: 0))
     }
 }
 

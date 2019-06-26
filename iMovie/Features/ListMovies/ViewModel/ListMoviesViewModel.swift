@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum Type: Int {
+    case popular = 0
+    case topRated = 1
+    case upcoming = 2
+}
+
 protocol ListMoviesViewModelDelegate: class {
     func didUpdateLayout(state: ViewState<ButtonAction>)
     func didUpdateData()
@@ -17,65 +23,42 @@ class ListMoviesViewModel {
     private let model: ListMoviesModel
     weak var delegate: ListMoviesViewModelDelegate?
     var service: ListMoviesService
-    
+    var itemsPerPage = 10
     var state: ViewState<ButtonAction> {
         didSet {
             updateView()
         }
     }
     
-    public init(model: ListMoviesModel, state: ViewState<ButtonAction>, service: ListMoviesService = ListMoviesService()) {
+    public init(model: ListMoviesModel, state: ViewState<ButtonAction>, service: ListMoviesService = ListMoviesService(), category: Type = .popular) {
         self.model = model
         self.state = state
         self.service = service
+        self.category = category
     }
     
-    var category: TypeMovie {
-        set {
-            model.category = newValue
+    var category: Type {
+        didSet {
             didCategoryChanged()
-        }
-        get {
-            return model.category
-        }
-    }
-    
-    var popular: [MovieModel] {
-        set {
-            model.popular = newValue
-        }
-        get {
-            return model.popular
-        }
-    }
-    
-    var topRated: [MovieModel] {
-        set {
-            model.topRated = newValue
-        }
-        get {
-            return model.topRated
-        }
-    }
-    
-    var upcoming: [MovieModel] {
-        set {
-            model.upcoming = newValue
-        }
-        get {
-            return model.upcoming
         }
     }
     
     var showingMovies: [MovieModel] = []
     
     func getPopularMovies() {
-        if popular.isEmpty {
+        if self.model.popular.count <= self.model.pagePopular * itemsPerPage {
             self.state = .loading
-            service.getPopularMovies(success: { (moviesResponse) in
+            service.getPopularMovies(page: self.model.pagePopular,
+                                     success: { (moviesResponse) in
                 DispatchQueue.main.async {
-                    self.popular = moviesResponse.results
-                    self.showingMovies = moviesResponse.results
+                    if self.model.popular.count == 0 {
+                        self.model.popular = moviesResponse.results
+                        self.showingMovies = moviesResponse.results
+                    } else {
+                        self.model.popular += moviesResponse.results
+                        self.showingMovies += moviesResponse.results
+                    }
+                    
                     self.state = .success
                     self.delegate?.didUpdateData()
                 }
@@ -94,18 +77,24 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingMovies = popular
+            showingMovies = self.model.popular
             self.delegate?.didUpdateData()
         }
     }
     
     func getTopRatedMovies() {
-        if topRated.isEmpty {
+        if self.model.topRated.count <= self.model.pageTopRated * itemsPerPage {
             self.state = .loading
-            service.getTopRatedMovies(success: { (moviesResponse) in
+            service.getTopRatedMovies(page: self.model.pageTopRated,
+                                      success: { (moviesResponse) in
                 DispatchQueue.main.async {
-                    self.topRated = moviesResponse.results
-                    self.showingMovies = moviesResponse.results
+                    if self.model.topRated.count == 0 {
+                        self.model.topRated = moviesResponse.results
+                        self.showingMovies = moviesResponse.results
+                    } else {
+                        self.model.topRated += moviesResponse.results
+                        self.showingMovies += moviesResponse.results
+                    }
                     self.state = .success
                     self.delegate?.didUpdateData()
                 }
@@ -124,17 +113,24 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingMovies = topRated
+            showingMovies = self.model.topRated
             self.delegate?.didUpdateData()
         }
     }
     
     func getUpcomingMovies() {
-        if upcoming.isEmpty {
+        if self.model.upcoming.count <= self.model.pageUpcoming * itemsPerPage {
             self.state = .loading
-            service.getUpcomingMovies(success: { (moviesResponse) in
+            service.getUpcomingMovies(page: self.model.pageUpcoming,
+                                      success: { (moviesResponse) in
                 DispatchQueue.main.async {
-                    self.upcoming = moviesResponse.results
+                    if self.model.upcoming.count == 0 {
+                        self.model.upcoming = moviesResponse.results
+                        self.showingMovies = moviesResponse.results
+                    } else {
+                        self.model.upcoming += moviesResponse.results
+                        self.showingMovies += moviesResponse.results
+                    }
                     self.showingMovies = moviesResponse.results
                     self.state = .success
                     self.delegate?.didUpdateData()
@@ -154,7 +150,7 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingMovies = upcoming
+            showingMovies = self.model.upcoming
             self.delegate?.didUpdateData()
         }
     }
@@ -172,6 +168,23 @@ class ListMoviesViewModel {
             self.getTopRatedMovies()
             break
         case .upcoming:
+            self.getUpcomingMovies()
+            break
+        }
+    }
+    
+    func loadNextPage() {
+        switch self.category {
+        case .popular:
+            self.model.pagePopular += 1
+            self.getPopularMovies()
+            break
+        case .topRated:
+            self.model.pageTopRated += 1
+            self.getTopRatedMovies()
+            break
+        case .upcoming:
+            self.model.pageUpcoming += 1
             self.getUpcomingMovies()
             break
         }

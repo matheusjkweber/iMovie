@@ -8,25 +8,22 @@
 
 import Foundation
 
-enum TypeMovie: Int {
-    case popular = 0
-    case topRated = 1
-    case upcoming = 2
-}
-
 class ListMoviesModel {
     var popular: [MovieModel]
     var topRated: [MovieModel]
     var upcoming: [MovieModel]
     
-    var page: Int
-    var category: TypeMovie
+    var pagePopular: Int
+    var pageTopRated: Int
+    var pageUpcoming: Int
     
-    init(popular: [MovieModel] = [], topRated: [MovieModel] = [], upcoming: [MovieModel] = [], page: Int, category: TypeMovie) {
+    init(popular: [MovieModel] = [], topRated: [MovieModel] = [], upcoming: [MovieModel] = [], pagePopular: Int = 1, pageTopRated: Int = 1, pageUpcoming: Int = 1) {
         self.popular = popular
         self.topRated = topRated
         self.upcoming = upcoming
-        self.page = page
-        self.category = category
+        
+        self.pagePopular = pagePopular
+        self.pageTopRated = pageTopRated
+        self.pageUpcoming = pageUpcoming
     }
 }

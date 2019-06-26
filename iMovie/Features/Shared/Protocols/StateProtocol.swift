@@ -15,6 +15,21 @@ enum ViewState<ButtonAction> {
     case loading
 }
 
+extension ViewState {
+    var raw: Int {
+        switch self {
+            case .internetError:
+                return 0
+            case .success:
+                return 1
+            case .requestError:
+                return 2
+            case .loading:
+                return 3
+        }
+    }
+}
+
 typealias ButtonAction = () -> ()
 
 protocol StateProtocol {

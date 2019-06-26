@@ -15,30 +15,33 @@ class ListMoviesService {
         self.manager = manager
     }
     
-    func getPopularMovies(success: @escaping (_ notice: MoviesResponse) -> (),
-                       failure: @escaping (_ error: NetworkResponse) -> ()) {
+    func getPopularMovies(page:Int,
+                          success: @escaping (_ notice: MoviesResponse) -> (),
+                          failure: @escaping (_ error: NetworkResponse) -> ()) {
         
-        manager.request(request: TheMovieDataBaseAPI.moviePopular, success: { (moviesResponse: MoviesResponse) in
+        manager.request(request: TheMovieDataBaseAPI.moviePopular(page), success: { (moviesResponse: MoviesResponse) in
             success(moviesResponse)
         }) { (error) in
             failure(error)
         }
     }
     
-    func getTopRatedMovies(success: @escaping (_ notice: MoviesResponse) -> (),
-                          failure: @escaping (_ error: NetworkResponse) -> ()) {
+    func getTopRatedMovies(page: Int,
+                           success: @escaping (_ notice: MoviesResponse) -> (),
+                           failure: @escaping (_ error: NetworkResponse) -> ()) {
         
-        manager.request(request: TheMovieDataBaseAPI.movieTopRated, success: { (moviesResponse: MoviesResponse) in
+        manager.request(request: TheMovieDataBaseAPI.movieTopRated(page), success: { (moviesResponse: MoviesResponse) in
             success(moviesResponse)
         }) { (error) in
             failure(error)
         }
     }
     
-    func getUpcomingMovies(success: @escaping (_ notice: MoviesResponse) -> (),
-                          failure: @escaping (_ error: NetworkResponse) -> ()) {
+    func getUpcomingMovies(page: Int,
+                           success: @escaping (_ notice: MoviesResponse) -> (),
+                           failure: @escaping (_ error: NetworkResponse) -> ()) {
         
-        manager.request(request: TheMovieDataBaseAPI.movieUpcoming, success: { (moviesResponse: MoviesResponse) in
+        manager.request(request: TheMovieDataBaseAPI.movieUpcoming(page), success: { (moviesResponse: MoviesResponse) in
             success(moviesResponse)
         }) { (error) in
             failure(error)
