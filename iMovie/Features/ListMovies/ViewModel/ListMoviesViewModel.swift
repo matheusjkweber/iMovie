@@ -45,13 +45,13 @@ class ListMoviesViewModel {
     
     var showingMovies: [MovieModel] = []
     
-    func getPopularMovies() {
-        if self.model.popular.count <= self.model.pagePopular * itemsPerPage {
+    func getPopularMovies(forceInternet: Bool = false) {
+        if self.model.popular.count <= self.model.pagePopular * itemsPerPage || forceInternet{
             self.state = .loading
             service.getPopularMovies(page: self.model.pagePopular,
                                      success: { (moviesResponse) in
                 DispatchQueue.main.async {
-                    if self.model.popular.count == 0 {
+                    if self.model.popular.count == 0 || forceInternet {
                         self.model.popular = moviesResponse.results
                         self.showingMovies = moviesResponse.results
                     } else {
@@ -67,11 +67,11 @@ class ListMoviesViewModel {
                     switch error{
                     case .noInternetConnection:
                         self.state = .internetError({
-                            self.getPopularMovies()
+                            self.getPopularMovies(forceInternet: forceInternet)
                         })
                     default:
                         self.state = .requestError({
-                            self.getPopularMovies()
+                            self.getPopularMovies(forceInternet: forceInternet)
                         })
                     }
                 }
@@ -82,13 +82,13 @@ class ListMoviesViewModel {
         }
     }
     
-    func getTopRatedMovies() {
-        if self.model.topRated.count <= self.model.pageTopRated * itemsPerPage {
+    func getTopRatedMovies(forceInternet: Bool = false) {
+        if self.model.topRated.count <= self.model.pageTopRated * itemsPerPage || forceInternet {
             self.state = .loading
             service.getTopRatedMovies(page: self.model.pageTopRated,
                                       success: { (moviesResponse) in
                 DispatchQueue.main.async {
-                    if self.model.topRated.count == 0 {
+                    if self.model.topRated.count == 0 || forceInternet {
                         self.model.topRated = moviesResponse.results
                         self.showingMovies = moviesResponse.results
                     } else {
@@ -103,11 +103,11 @@ class ListMoviesViewModel {
                     switch error{
                     case .noInternetConnection:
                         self.state = .internetError({
-                            self.getTopRatedMovies()
+                            self.getTopRatedMovies(forceInternet: forceInternet)
                         })
                     default:
                         self.state = .requestError({
-                            self.getTopRatedMovies()
+                            self.getTopRatedMovies(forceInternet: forceInternet)
                         })
                     }
                 }
@@ -118,13 +118,13 @@ class ListMoviesViewModel {
         }
     }
     
-    func getUpcomingMovies() {
-        if self.model.upcoming.count <= self.model.pageUpcoming * itemsPerPage {
+    func getUpcomingMovies(forceInternet: Bool = false) {
+        if self.model.upcoming.count <= self.model.pageUpcoming * itemsPerPage || forceInternet {
             self.state = .loading
             service.getUpcomingMovies(page: self.model.pageUpcoming,
                                       success: { (moviesResponse) in
                 DispatchQueue.main.async {
-                    if self.model.upcoming.count == 0 {
+                    if self.model.upcoming.count == 0 || forceInternet{
                         self.model.upcoming = moviesResponse.results
                         self.showingMovies = moviesResponse.results
                     } else {
@@ -140,11 +140,11 @@ class ListMoviesViewModel {
                     switch error{
                     case .noInternetConnection:
                         self.state = .internetError({
-                            self.getUpcomingMovies()
+                            self.getUpcomingMovies(forceInternet: forceInternet)
                         })
                     default:
                         self.state = .requestError({
-                            self.getUpcomingMovies()
+                            self.getUpcomingMovies(forceInternet: forceInternet)
                         })
                     }
                 }
@@ -186,6 +186,23 @@ class ListMoviesViewModel {
         case .upcoming:
             self.model.pageUpcoming += 1
             self.getUpcomingMovies()
+            break
+        }
+    }
+    
+    func refresh() {
+        switch self.category {
+        case .popular:
+            self.model.pagePopular = 1
+            self.getPopularMovies(forceInternet: true)
+            break
+        case .topRated:
+            self.model.pageTopRated = 1
+            self.getTopRatedMovies(forceInternet: true)
+            break
+        case .upcoming:
+            self.model.pageUpcoming = 1
+            self.getUpcomingMovies(forceInternet: true)
             break
         }
     }

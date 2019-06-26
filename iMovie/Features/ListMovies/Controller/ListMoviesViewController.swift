@@ -90,6 +90,7 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
         default:
             break
         }
+        self.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
 }
 
@@ -135,7 +136,7 @@ extension ListMoviesViewController {
 //MARK: RefreshControl
 extension ListMoviesViewController {
     @objc func refresh(_ sender: Any) {
-        
+        self.viewModel?.refresh()
     }
     
     func stopRefresher(){
@@ -147,6 +148,7 @@ extension ListMoviesViewController {
 extension ListMoviesViewController {
     func didUpdateLayout(state: ViewState<ButtonAction>) {
         self.state = state
+        self.stopRefresher()
         setupUIStatus()
     }
     
