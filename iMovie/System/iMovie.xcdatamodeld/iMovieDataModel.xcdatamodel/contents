@@ -5,8 +5,9 @@
         <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voteAverage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Media" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Media" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

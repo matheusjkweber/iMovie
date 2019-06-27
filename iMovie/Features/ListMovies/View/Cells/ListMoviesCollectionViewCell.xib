@@ -42,7 +42,13 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-ZW-zoS">
                         <rect key="frame" x="158" y="8" width="34" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scn-NG-7SX">
+                        <rect key="frame" x="8" y="8" width="22" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.89813512563705444" green="0.59950695497698714" blue="0.24262126628874636" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -51,7 +57,9 @@
             <constraints>
                 <constraint firstItem="KPe-Oc-R9w" firstAttribute="centerX" secondItem="mhr-Dg-tWW" secondAttribute="centerX" id="0HV-JW-0B2"/>
                 <constraint firstAttribute="trailing" secondItem="fdR-ZW-zoS" secondAttribute="trailing" constant="8" id="47q-Nb-toV"/>
+                <constraint firstItem="Scn-NG-7SX" firstAttribute="top" secondItem="mhr-Dg-tWW" secondAttribute="top" constant="8" id="bzh-Im-BpL"/>
                 <constraint firstItem="4KX-ms-hua" firstAttribute="centerX" secondItem="mhr-Dg-tWW" secondAttribute="centerX" id="dns-IY-0iy"/>
+                <constraint firstItem="Scn-NG-7SX" firstAttribute="leading" secondItem="mhr-Dg-tWW" secondAttribute="leading" constant="8" id="mFK-Jo-6PY"/>
                 <constraint firstItem="4KX-ms-hua" firstAttribute="centerY" secondItem="mhr-Dg-tWW" secondAttribute="centerY" constant="-8" id="mVl-uz-kmt"/>
                 <constraint firstItem="fdR-ZW-zoS" firstAttribute="top" secondItem="mhr-Dg-tWW" secondAttribute="top" constant="8" id="rli-bT-t65"/>
                 <constraint firstItem="KPe-Oc-R9w" firstAttribute="top" secondItem="4KX-ms-hua" secondAttribute="bottom" constant="9" id="zeL-dx-m1l"/>
@@ -61,6 +69,7 @@
                 <outlet property="movieImageView" destination="4KX-ms-hua" id="6wl-vv-e8L"/>
                 <outlet property="movieTitleLabel" destination="KPe-Oc-R9w" id="xuC-CI-Qna"/>
                 <outlet property="typeLabel" destination="fdR-ZW-zoS" id="waM-2T-V64"/>
+                <outlet property="voteAverageLabel" destination="Scn-NG-7SX" id="NLs-po-MCe"/>
             </connections>
             <point key="canvasLocation" x="53.623188405797109" y="-258.48214285714283"/>
         </collectionViewCell>

@@ -108,7 +108,8 @@ extension ListMoviesViewController {
         
         cell.setup(
             title: itemModel.title,
-            type: itemModel.type == MediaType.movies ? "Movie" : "TV"
+            type: itemModel.type == MediaType.movies ? "Movie" : "TV",
+            voteAverage: itemModel.voteAverage
         )
         
         return cell

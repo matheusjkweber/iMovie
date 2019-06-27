@@ -13,6 +13,7 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var voteAverageLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,9 +29,10 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
 }
 
 extension ListMoviesCollectionViewCell {
-    func setup(title: String, type: String) {
+    func setup(title: String, type: String, voteAverage: Float) {
         movieTitleLabel.text = title
         typeLabel.text = type
+        voteAverageLabel.text = "\(voteAverage)"
         setLayout()
     }
     

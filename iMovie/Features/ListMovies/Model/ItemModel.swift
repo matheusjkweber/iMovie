@@ -22,12 +22,14 @@ class ShowMediaModel {
     let popularity: Float
     let type: MediaType
     let id: Int
+    let voteAverage: Float
     
     init(with tvShowModel: TVShowModel) {
         self.id = tvShowModel.id
         self.title = tvShowModel.name
         self.popularity = tvShowModel.popularity
         self.type = MediaType.tvShows
+        self.voteAverage = tvShowModel.vote_average
     }
     
     init(with movieModel: MovieModel) {
@@ -35,6 +37,7 @@ class ShowMediaModel {
         self.title = movieModel.title
         self.popularity = movieModel.popularity
         self.type = MediaType.movies
+        self.voteAverage = movieModel.vote_average
     }
     
     init(from mediaEntity: Media) {
@@ -45,5 +48,7 @@ class ShowMediaModel {
         self.type = MediaType(rawValue: type) ?? .movies
         
         self.id = mediaEntity.value(forKey: "id") as? Int ?? 0
+        
+        self.voteAverage = mediaEntity.value(forKey: "voteAverage") as? Float ?? 0
     }
 }
