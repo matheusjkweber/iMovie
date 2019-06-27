@@ -44,6 +44,14 @@ class ListMoviesViewModel {
     }
     
     var showingItems: [ShowMediaModel] = []
+    var filteredItems: [ShowMediaModel] = []
+    
+    var filtering: MediaType = .none {
+        didSet {
+            self.filterItems()
+            self.delegate?.didUpdateData()
+        }
+    }
     
     func getMustShowNumberOfItems() -> Int {
         switch self.category {
@@ -56,7 +64,7 @@ class ListMoviesViewModel {
         }
     }
     
-    func getPopularMovies(movingToNextPage: Bool = false, forceInternet: Bool = false) {
+    func getPopular(movingToNextPage: Bool = false, forceInternet: Bool = false) {
         if movingToNextPage {
             self.model.actualPage += 1
         }
@@ -66,6 +74,11 @@ class ListMoviesViewModel {
         service.getPopular(page: self.model.actualPage, itemsPerPage: self.itemsPerPage, success: { (results, maxPages) in
             self.model.popular += results
             self.showingItems += results
+            
+            if self.filtering != .none {
+                self.filterItems()
+            }
+            
             self.model.maxPages = maxPages
             self.delegate?.didUpdateData()
             self.state = .success
@@ -74,15 +87,19 @@ class ListMoviesViewModel {
                 switch error{
                 case .noInternetConnection:
                     self.state = .internetError({
-                        self.getPopularMovies(movingToNextPage: movingToNextPage)
+                        self.getPopular(movingToNextPage: movingToNextPage)
                     })
                 default:
                     self.state = .requestError({
-                        self.getPopularMovies(movingToNextPage: movingToNextPage)
+                        self.getPopular(movingToNextPage: movingToNextPage)
                     })
                 }
             }
         }
+    }
+    
+    func filterItems() {
+        self.filteredItems = self.showingItems.filter({ $0.type == filtering })
     }
     
     func getTopRatedMovies(forceInternet: Bool = false) {
@@ -165,7 +182,7 @@ class ListMoviesViewModel {
     func didCategoryChanged() {
         switch(self.category) {
         case .popular:
-            self.getPopularMovies()
+            self.getPopular()
             break
         case .topRated:
             self.getTopRatedMovies()
@@ -179,7 +196,7 @@ class ListMoviesViewModel {
     func loadNextPage() {
         switch self.category {
         case .popular:
-            self.getPopularMovies(movingToNextPage: true)
+            self.getPopular(movingToNextPage: true)
             break
         case .topRated:
             //self.getTopRatedMovies(forceInternet: false)
@@ -193,7 +210,7 @@ class ListMoviesViewModel {
     func refresh() {
         switch self.category {
         case .popular:
-            self.getPopularMovies()
+            self.getPopular()
             break
         case .topRated:
             self.getTopRatedMovies()

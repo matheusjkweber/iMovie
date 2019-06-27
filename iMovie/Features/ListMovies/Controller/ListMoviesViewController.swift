@@ -51,7 +51,7 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
         self.filterView.delegate = self
         
         self.viewModel?.delegate = self
-        self.viewModel?.getPopularMovies()
+        self.viewModel?.getPopular()
         
         self.configureNavigationWithButtons()
         self.setupCollectionView()
@@ -98,14 +98,23 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
 //MARK: CollectionView
 extension ListMoviesViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel?.showingItems.count ?? 0
+        if let viewModel = viewModel {
+            return viewModel.filtering == .none ? viewModel.showingItems.count : viewModel.filteredItems.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let itemModel = viewModel?.showingItems[indexPath.row] else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell else {
             fatalError("Must be provide a ListMoviesCollectionViewCell")
         }
-       
+        
+        guard let viewModel = self.viewModel else {
+            fatalError("ViewModel cannot be nil")
+        }
+        
+        let itemModel = viewModel.filtering == .none ? viewModel.showingItems[indexPath.row] : viewModel.filteredItems[indexPath.row]
+        
         cell.setup(
             title: itemModel.title,
             type: itemModel.type == MediaType.movies ? "Movie" : "TV",
@@ -122,15 +131,19 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let movieModel = viewModel?.showingItems[indexPath.row] {
-            //self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
-        }
+//        if let movieModel = viewModel?.showingItems[indexPath.row] {
+//            //self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let showingMovies = viewModel?.showingItems {
-            if indexPath.row == showingMovies.count - 1 {
-                viewModel?.loadNextPage()
+        if let viewModel = viewModel {
+            if viewModel.filtering == .none {
+                if viewModel.showingItems.count - 1 == indexPath.row {
+                    viewModel.loadNextPage()
+                }
+            } else if viewModel.filteredItems.count - 1 == indexPath.row {
+                viewModel.loadNextPage()
             }
         }
     }
@@ -179,5 +192,7 @@ extension ListMoviesViewController {
     
     func didSelectFilter(filterValue: MediaType) {
         didClickedFilterButton()
+        
+        self.viewModel?.filtering = filterValue
     }
 }
