@@ -56,7 +56,7 @@ class ListMoviesViewModel {
         }
     }
     
-    func getPopularMovies(movingToNextPage: Bool = false) {
+    func getPopularMovies(movingToNextPage: Bool = false, forceInternet: Bool = false) {
         if movingToNextPage {
             self.model.actualPage += 1
         }

@@ -21,14 +21,13 @@ class ListMoviesService {
         self.coreDataManager = coreDataManager
     }
     
-    func getPopular(page: Int,
+    func getPopular(forceInternet: Bool = false,
+                    page: Int,
                     itemsPerPage: Int,
                     success: @escaping (_ results: [ShowMediaModel], _ maxPage: Int) -> (),
                     failure: @escaping (_ error: NetworkResponse) -> ()) {
         
-        
-        
-        if coreDataManager.retrieveNumberOfMedia() >= (itemsPerPage * page) {
+        if coreDataManager.retrieveNumberOfMedia() >= (itemsPerPage * page) && !forceInternet {
             let medias = coreDataManager.retrieveMedias(limit: itemsPerPage, offset: page * itemsPerPage, orderedBy: .popular)
             success(medias, coreDataManager.retrieveNumberOfMedia() / itemsPerPage)
         } else {
@@ -60,6 +59,10 @@ class ListMoviesService {
                         failure(error)
                     }
                 } else {
+                    if forceInternet {
+                        self.coreDataManager.emptyMedia()
+                    }
+                    
                     var results = [ItemModel]()
                     
                     if let tvResponse = self.tvShowResponse {

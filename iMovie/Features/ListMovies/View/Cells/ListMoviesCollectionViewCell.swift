@@ -32,7 +32,7 @@ extension ListMoviesCollectionViewCell {
     func setup(title: String, type: String, voteAverage: Float) {
         movieTitleLabel.text = title
         typeLabel.text = type
-        voteAverageLabel.text = "\(voteAverage)"
+        voteAverageLabel.text = String(format: "%.2f", voteAverage)
         setLayout()
     }
     

@@ -60,8 +60,4 @@ class TVShowModel: ItemModel {
         
         super.init()
     }
-    
-    func getPopularity() -> Float {
-        return popularity
-    }
 }

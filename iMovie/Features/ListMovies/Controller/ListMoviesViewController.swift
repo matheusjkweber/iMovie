@@ -105,7 +105,7 @@ extension ListMoviesViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ListMoviesCollectionViewCell, let itemModel = viewModel?.showingItems[indexPath.row] else {
             fatalError("Must be provide a ListMoviesCollectionViewCell")
         }
-        
+       
         cell.setup(
             title: itemModel.title,
             type: itemModel.type == MediaType.movies ? "Movie" : "TV",
