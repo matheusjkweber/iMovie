@@ -16,7 +16,7 @@ class TVShowModel: ItemModel {
     let popularity: Float
     let origin_country: [String]
     let vote_count: Int
-    let first_air_date: String
+    let release_date: String
     let backdrop_path: String
     let original_language: String
     let vote_average: Float
@@ -49,7 +49,7 @@ class TVShowModel: ItemModel {
         self.popularity = try container.decodeIfPresent(Float.self, forKey: .popularity) ?? 0
         self.origin_country = try container.decodeIfPresent(Array.self, forKey: .origin_country) ?? []
         self.vote_count = try container.decodeIfPresent(Int.self, forKey: .vote_count) ?? 0
-        self.first_air_date = try container.decodeIfPresent(String.self, forKey: .first_air_date) ?? ""
+        self.release_date = try container.decodeIfPresent(String.self, forKey: .first_air_date) ?? ""
         
         self.backdrop_path = try container.decodeIfPresent(String.self, forKey: .backdrop_path) ?? ""
         self.original_language = try container.decodeIfPresent(String.self, forKey: .original_language) ?? ""
