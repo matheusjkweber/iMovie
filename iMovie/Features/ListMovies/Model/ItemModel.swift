@@ -16,3 +16,21 @@ enum ItemType {
 class ItemModel: Codable {
     
 }
+
+class ShowMediaModel {
+    let title: String
+    let popularity: Float
+    let type: MediaType
+    
+    init(with tvShowModel: TVShowModel) {
+        self.title = tvShowModel.name
+        self.popularity = tvShowModel.popularity
+        self.type = MediaType.movies
+    }
+    
+    init(with movieModel: MovieModel) {
+        self.title = movieModel.title
+        self.popularity = movieModel.popularity
+        self.type = MediaType.tvShows
+    }
+}

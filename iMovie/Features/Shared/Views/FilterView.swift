@@ -9,12 +9,12 @@
 import UIKit
 
 protocol FilterViewDelegate: class {
-    func didSelectFilter(filterValue: FilterValue)
+    func didSelectFilter(filterValue: MediaType)
 }
 
 class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource  {
     
-    var filterValue: FilterValue = .none
+    var filterValue: MediaType = .none
     weak var delegate: FilterViewDelegate?
     
     @IBOutlet var contentView: UIView!
@@ -82,11 +82,11 @@ extension FilterView {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch(row){
         case 0:
-            return FilterValue.movies.rawValue
+            return MediaType.movies.rawValue
         case 1:
-            return FilterValue.tvShows.rawValue
+            return MediaType.tvShows.rawValue
         default:
-            return FilterValue.none.rawValue
+            return MediaType.none.rawValue
         }
     }
     

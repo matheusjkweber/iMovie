@@ -6,21 +6,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCollectionViewCell" id="mhr-Dg-tWW" customClass="ListMoviesCollectionViewCell" customModule="iMovie" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="movieCollectionViewCell" id="mhr-Dg-tWW" customClass="ListMoviesCollectionViewCell" customModule="iMovie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPe-Oc-R9w" userLabel="Movie Title Label">
-                        <rect key="frame" x="20" y="113" width="110" height="16"/>
+                        <rect key="frame" x="45" y="141" width="110" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="hl7-Vd-PRW"/>
                         </constraints>
@@ -29,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-image" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-ms-hua" userLabel="Movie Image View">
-                        <rect key="frame" x="35" y="24" width="80" height="80"/>
+                        <rect key="frame" x="60" y="52" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="1Uk-Fx-D88"/>
                             <constraint firstAttribute="width" constant="80" id="h6p-F1-AFT"/>
@@ -40,22 +39,30 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-ZW-zoS">
+                        <rect key="frame" x="158" y="8" width="34" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="KPe-Oc-R9w" firstAttribute="centerX" secondItem="9V7-3m-oue" secondAttribute="centerX" id="0HV-JW-0B2"/>
-                <constraint firstItem="4KX-ms-hua" firstAttribute="centerX" secondItem="9V7-3m-oue" secondAttribute="centerX" id="dns-IY-0iy"/>
-                <constraint firstItem="4KX-ms-hua" firstAttribute="centerY" secondItem="9V7-3m-oue" secondAttribute="centerY" constant="-16" id="mVl-uz-kmt"/>
+                <constraint firstItem="KPe-Oc-R9w" firstAttribute="centerX" secondItem="mhr-Dg-tWW" secondAttribute="centerX" id="0HV-JW-0B2"/>
+                <constraint firstAttribute="trailing" secondItem="fdR-ZW-zoS" secondAttribute="trailing" constant="8" id="47q-Nb-toV"/>
+                <constraint firstItem="4KX-ms-hua" firstAttribute="centerX" secondItem="mhr-Dg-tWW" secondAttribute="centerX" id="dns-IY-0iy"/>
+                <constraint firstItem="4KX-ms-hua" firstAttribute="centerY" secondItem="mhr-Dg-tWW" secondAttribute="centerY" constant="-8" id="mVl-uz-kmt"/>
+                <constraint firstItem="fdR-ZW-zoS" firstAttribute="top" secondItem="mhr-Dg-tWW" secondAttribute="top" constant="8" id="rli-bT-t65"/>
                 <constraint firstItem="KPe-Oc-R9w" firstAttribute="top" secondItem="4KX-ms-hua" secondAttribute="bottom" constant="9" id="zeL-dx-m1l"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="9V7-3m-oue"/>
             <size key="customSize" width="202" height="173"/>
             <connections>
                 <outlet property="movieImageView" destination="4KX-ms-hua" id="6wl-vv-e8L"/>
                 <outlet property="movieTitleLabel" destination="KPe-Oc-R9w" id="xuC-CI-Qna"/>
+                <outlet property="typeLabel" destination="fdR-ZW-zoS" id="waM-2T-V64"/>
             </connections>
-            <point key="canvasLocation" x="54" y="-258"/>
+            <point key="canvasLocation" x="53.623188405797109" y="-258.48214285714283"/>
         </collectionViewCell>
     </objects>
     <resources>

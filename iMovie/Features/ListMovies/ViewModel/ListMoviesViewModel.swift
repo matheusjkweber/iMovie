@@ -23,7 +23,7 @@ class ListMoviesViewModel {
     private let model: ListMoviesModel
     weak var delegate: ListMoviesViewModelDelegate?
     var service: ListMoviesService
-    var itemsPerPage = 10
+    var itemsPerPage = 20
     var state: ViewState<ButtonAction> {
         didSet {
             updateView()
@@ -43,25 +43,40 @@ class ListMoviesViewModel {
         }
     }
     
-    var showingItems: [ItemModel] = []
+    var showingItems: [ShowMediaModel] = []
     
-    func getPopularMovies(forceInternet: Bool = false) {
-        if self.model.popular.count <= self.model.pagePopular * itemsPerPage || forceInternet{
+    func getPopularMovies(forceInternet: Bool = false, movingToNextPage: Bool = false) {
+        if movingToNextPage {
+            self.model.pagesMovie.pagePopular += 1
+            self.model.pagesTvShow.pagePopular += 1
+        }
+        
+        if forceInternet {
+            self.model.pagesMovie.pagePopular = 0
+            self.model.pagesTvShow.pagePopular = 0
+        }
+        
+        if self.model.verifyLimit(for: .popular, and: itemsPerPage) || forceInternet {
             self.state = .loading
-            service.getPopularMovies(page: self.model.pagePopular,
-                                     success: { (itemsResponse) in
-                DispatchQueue.main.async {
-                    if self.model.popular.count == 0 || forceInternet {
-                        self.model.popular = itemsResponse.results
-                        self.showingItems = itemsResponse.results
-                    } else {
-                        self.model.popular += itemsResponse.results
-                        self.showingItems += itemsResponse.results
-                    }
-                    
-                    self.state = .success
-                    self.delegate?.didUpdateData()
+            service.getPopular(pageMovie: self.model.getNextPageIfPossible(for: .popular, and: .movies),
+                               pageTVShow: self.model.getNextPageIfPossible(for: .popular, and: .tvShows),
+                               success: { (results , movieResponse, tvShowResponse)  in
+                self.model.popular += results
+            
+                if let tvShowResponse = tvShowResponse {
+                    self.model.pagesTvShow.pagePopular = tvShowResponse.page
+                    self.model.pagesTvShow.maxPagePopular = tvShowResponse.total_pages
                 }
+            
+                if let movieResponse = movieResponse {
+                    self.model.pagesMovie.pagePopular = movieResponse.page
+                    self.model.pagesMovie.maxPagePopular = movieResponse.total_pages
+                }
+            
+                self.showingItems += results
+
+                self.state = .success
+                self.delegate?.didUpdateData()
             }) { (error) in
                 DispatchQueue.main.async {
                     switch error{
@@ -77,82 +92,82 @@ class ListMoviesViewModel {
                 }
             }
         } else {
-            showingItems = self.model.popular
+            //showingItems = self.model.
             self.delegate?.didUpdateData()
         }
     }
     
     func getTopRatedMovies(forceInternet: Bool = false) {
-        if self.model.topRated.count <= self.model.pageTopRated * itemsPerPage || forceInternet {
-            self.state = .loading
-            service.getTopRatedMovies(page: self.model.pageTopRated,
-                                      success: { (itemsResponse) in
-                DispatchQueue.main.async {
-                    if self.model.topRated.count == 0 || forceInternet {
-                        self.model.topRated = itemsResponse.results
-                        self.showingItems = itemsResponse.results
-                    } else {
-                        self.model.topRated += itemsResponse.results
-                        self.showingItems += itemsResponse.results
-                    }
-                    self.state = .success
-                    self.delegate?.didUpdateData()
-                }
-            }) { (error) in
-                DispatchQueue.main.async {
-                    switch error{
-                    case .noInternetConnection:
-                        self.state = .internetError({
-                            self.getTopRatedMovies(forceInternet: forceInternet)
-                        })
-                    default:
-                        self.state = .requestError({
-                            self.getTopRatedMovies(forceInternet: forceInternet)
-                        })
-                    }
-                }
-            }
-        } else {
-            showingItems = self.model.topRated
-            self.delegate?.didUpdateData()
-        }
+//        if self.model.topRated.count <= self.model.pageTopRated * itemsPerPage || forceInternet {
+//            self.state = .loading
+//            service.getTopRatedMovies(page: self.model.pageTopRated,
+//                                      success: { (itemsResponse) in
+//                DispatchQueue.main.async {
+//                    if self.model.topRated.count == 0 || forceInternet {
+//                        self.model.topRated = itemsResponse.results
+//                        self.showingItems = itemsResponse.results
+//                    } else {
+//                        self.model.topRated += itemsResponse.results
+//                        self.showingItems += itemsResponse.results
+//                    }
+//                    self.state = .success
+//                    self.delegate?.didUpdateData()
+//                }
+//            }) { (error) in
+//                DispatchQueue.main.async {
+//                    switch error{
+//                    case .noInternetConnection:
+//                        self.state = .internetError({
+//                            self.getTopRatedMovies(forceInternet: forceInternet)
+//                        })
+//                    default:
+//                        self.state = .requestError({
+//                            self.getTopRatedMovies(forceInternet: forceInternet)
+//                        })
+//                    }
+//                }
+//            }
+//        } else {
+//            showingItems = self.model.topRated
+//            self.delegate?.didUpdateData()
+//        }
     }
     
     func getUpcomingMovies(forceInternet: Bool = false) {
-        if self.model.upcoming.count <= self.model.pageUpcoming * itemsPerPage || forceInternet {
-            self.state = .loading
-            service.getUpcomingMovies(page: self.model.pageUpcoming,
-                                      success: { (itemsResponse) in
-                DispatchQueue.main.async {
-                    if self.model.upcoming.count == 0 || forceInternet{
-                        self.model.upcoming = itemsResponse.results
-                        self.showingItems = itemsResponse.results
-                    } else {
-                        self.model.upcoming += itemsResponse.results
-                        self.showingItems += itemsResponse.results
-                    }
-                    self.showingItems = itemsResponse.results
-                    self.state = .success
-                    self.delegate?.didUpdateData()
-                }
-            }) { (error) in
-                DispatchQueue.main.async {
-                    switch error{
-                    case .noInternetConnection:
-                        self.state = .internetError({
-                            self.getUpcomingMovies(forceInternet: forceInternet)
-                        })
-                    default:
-                        self.state = .requestError({
-                            self.getUpcomingMovies(forceInternet: forceInternet)
-                        })
-                    }
-                }
-            }
-        } else {
-            showingItems = self.model.upcoming
-            self.delegate?.didUpdateData()
-        }
+//        if self.model.upcoming.count <= self.model.pageUpcoming * itemsPerPage || forceInternet {
+//            self.state = .loading
+//            service.getUpcomingMovies(page: self.model.pageUpcoming,
+//                                      success: { (itemsResponse) in
+//                DispatchQueue.main.async {
+//                    if self.model.upcoming.count == 0 || forceInternet{
+//                        self.model.upcoming = itemsResponse.results
+//                        self.showingItems = itemsResponse.results
+//                    } else {
+//                        self.model.upcoming += itemsResponse.results
+//                        self.showingItems += itemsResponse.results
+//                    }
+//                    self.showingItems = itemsResponse.results
+//                    self.state = .success
+//                    self.delegate?.didUpdateData()
+//                }
+//            }) { (error) in
+//                DispatchQueue.main.async {
+//                    switch error{
+//                    case .noInternetConnection:
+//                        self.state = .internetError({
+//                            self.getUpcomingMovies(forceInternet: forceInternet)
+//                        })
+//                    default:
+//                        self.state = .requestError({
+//                            self.getUpcomingMovies(forceInternet: forceInternet)
+//                        })
+//                    }
+//                }
+//            }
+//        } else {
+//            showingItems = self.model.upcoming
+//            self.delegate?.didUpdateData()
+//        }
     }
     
     func updateView() {
@@ -176,16 +191,13 @@ class ListMoviesViewModel {
     func loadNextPage() {
         switch self.category {
         case .popular:
-            self.model.pagePopular += 1
-            self.getPopularMovies()
+            self.getPopularMovies(forceInternet: false, movingToNextPage: true)
             break
         case .topRated:
-            self.model.pageTopRated += 1
-            self.getTopRatedMovies()
+            //self.getTopRatedMovies(forceInternet: false)
             break
         case .upcoming:
-            self.model.pageUpcoming += 1
-            self.getUpcomingMovies()
+            //self.getUpcomingMovies()
             break
         }
     }
@@ -193,15 +205,12 @@ class ListMoviesViewModel {
     func refresh() {
         switch self.category {
         case .popular:
-            self.model.pagePopular = 1
             self.getPopularMovies(forceInternet: true)
             break
         case .topRated:
-            self.model.pageTopRated = 1
             self.getTopRatedMovies(forceInternet: true)
             break
         case .upcoming:
-            self.model.pageUpcoming = 1
             self.getUpcomingMovies(forceInternet: true)
             break
         }

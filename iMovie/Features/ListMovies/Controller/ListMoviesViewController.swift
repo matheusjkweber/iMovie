@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum FilterValue: String {
+enum MediaType: String {
     case movies = "Movies"
     case tvShows = "TV Shows"
     case none = "None"
@@ -105,16 +105,9 @@ extension ListMoviesViewController {
             fatalError("Must be provide a ListMoviesCollectionViewCell")
         }
         
-        var title = ""
-        
-        if let movieModel = itemModel as? MovieModel {
-            title = movieModel.title
-        } else if let tvShowModel = itemModel as? TVShowModel {
-            title = tvShowModel.name
-        }
-        
         cell.setup(
-            title: title
+            title: itemModel.title,
+            type: itemModel.type == MediaType.movies ? "Movie" : "TV"
         )
         
         return cell
@@ -123,12 +116,12 @@ extension ListMoviesViewController {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 125, height: 125)
+        return CGSize(width: 150, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let movieModel = viewModel?.showingItems[indexPath.row] {
-            self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
+            //self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
         }
     }
     
@@ -179,7 +172,7 @@ extension ListMoviesViewController {
         }
     }
     
-    func didSelectFilter(filterValue: FilterValue) {
+    func didSelectFilter(filterValue: MediaType) {
         didClickedFilterButton()
     }
 }

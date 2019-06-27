@@ -12,6 +12,7 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,9 +28,9 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
 }
 
 extension ListMoviesCollectionViewCell {
-    func setup(title: String) {
-       movieTitleLabel.text = title
-        
+    func setup(title: String, type: String) {
+        movieTitleLabel.text = title
+        typeLabel.text = type
         setLayout()
     }
     
