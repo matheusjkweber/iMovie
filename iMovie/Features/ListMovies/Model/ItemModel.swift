@@ -21,16 +21,29 @@ class ShowMediaModel {
     let title: String
     let popularity: Float
     let type: MediaType
+    let id: Int
     
     init(with tvShowModel: TVShowModel) {
+        self.id = tvShowModel.id
         self.title = tvShowModel.name
         self.popularity = tvShowModel.popularity
-        self.type = MediaType.movies
+        self.type = MediaType.tvShows
     }
     
     init(with movieModel: MovieModel) {
+        self.id = movieModel.id
         self.title = movieModel.title
         self.popularity = movieModel.popularity
-        self.type = MediaType.tvShows
+        self.type = MediaType.movies
+    }
+    
+    init(from mediaEntity: Media) {
+        self.title = mediaEntity.value(forKey: "title") as? String ?? ""
+        self.popularity = mediaEntity.value(forKey: "popularity") as? Float ?? 0
+        
+        let type = mediaEntity.value(forKey: "type") as? String ?? "movies"
+        self.type = MediaType(rawValue: type) ?? .movies
+        
+        self.id = mediaEntity.value(forKey: "id") as? Int ?? 0
     }
 }

@@ -60,6 +60,7 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         collectionView.register(UINib(nibName: "ListMoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         collectionView.reloadData()
         
@@ -154,7 +155,10 @@ extension ListMoviesViewController {
     }
     
     func didUpdateData() {
-        self.collectionView.reloadSections(IndexSet(arrayLiteral: 0))
+        //self.collectionView.reloadSections(IndexSet(arrayLiteral: 0))
+        OperationQueue.main.addOperation {
+            self.collectionView.reloadData()
+        }
     }
 }
 

@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum Type: Int {
-    case popular = 0
-    case topRated = 1
-    case upcoming = 2
+enum Type: String {
+    case popular = "popularity"
+    case topRated = "topRated"
+    case upcoming = "upcoming"
 }
 
 protocol ListMoviesViewModelDelegate: class {
@@ -23,7 +23,7 @@ class ListMoviesViewModel {
     private let model: ListMoviesModel
     weak var delegate: ListMoviesViewModelDelegate?
     var service: ListMoviesService
-    var itemsPerPage = 20
+    var itemsPerPage = 10
     var state: ViewState<ButtonAction> {
         didSet {
             updateView()
@@ -45,55 +45,43 @@ class ListMoviesViewModel {
     
     var showingItems: [ShowMediaModel] = []
     
-    func getPopularMovies(forceInternet: Bool = false, movingToNextPage: Bool = false) {
+    func getMustShowNumberOfItems() -> Int {
+        switch self.category {
+        case .popular:
+            return (self.model.pagesMovie.pagePopular + self.model.pagesTvShow.pagePopular) * itemsPerPage
+        case .topRated:
+            return (self.model.pagesMovie.pageTopRated + self.model.pagesTvShow.pageTopRated) * itemsPerPage
+        case .upcoming:
+            return (self.model.pagesMovie.pageUpcoming + self.model.pagesTvShow.pageUpcoming) * itemsPerPage
+        }
+    }
+    
+    func getPopularMovies(movingToNextPage: Bool = false) {
         if movingToNextPage {
-            self.model.pagesMovie.pagePopular += 1
-            self.model.pagesTvShow.pagePopular += 1
+            self.model.actualPage += 1
         }
         
-        if forceInternet {
-            self.model.pagesMovie.pagePopular = 0
-            self.model.pagesTvShow.pagePopular = 0
-        }
+        self.state = .loading
         
-        if self.model.verifyLimit(for: .popular, and: itemsPerPage) || forceInternet {
-            self.state = .loading
-            service.getPopular(pageMovie: self.model.getNextPageIfPossible(for: .popular, and: .movies),
-                               pageTVShow: self.model.getNextPageIfPossible(for: .popular, and: .tvShows),
-                               success: { (results , movieResponse, tvShowResponse)  in
-                self.model.popular += results
-            
-                if let tvShowResponse = tvShowResponse {
-                    self.model.pagesTvShow.pagePopular = tvShowResponse.page
-                    self.model.pagesTvShow.maxPagePopular = tvShowResponse.total_pages
-                }
-            
-                if let movieResponse = movieResponse {
-                    self.model.pagesMovie.pagePopular = movieResponse.page
-                    self.model.pagesMovie.maxPagePopular = movieResponse.total_pages
-                }
-            
-                self.showingItems += results
-
-                self.state = .success
-                self.delegate?.didUpdateData()
-            }) { (error) in
-                DispatchQueue.main.async {
-                    switch error{
-                    case .noInternetConnection:
-                        self.state = .internetError({
-                            self.getPopularMovies(forceInternet: forceInternet)
-                        })
-                    default:
-                        self.state = .requestError({
-                            self.getPopularMovies(forceInternet: forceInternet)
-                        })
-                    }
+        service.getPopular(page: self.model.actualPage, itemsPerPage: self.itemsPerPage, success: { (results, maxPages) in
+            self.model.popular += results
+            self.showingItems += results
+            self.model.maxPages = maxPages
+            self.delegate?.didUpdateData()
+            self.state = .success
+        }) { (error) in
+            DispatchQueue.main.async {
+                switch error{
+                case .noInternetConnection:
+                    self.state = .internetError({
+                        self.getPopularMovies(movingToNextPage: movingToNextPage)
+                    })
+                default:
+                    self.state = .requestError({
+                        self.getPopularMovies(movingToNextPage: movingToNextPage)
+                    })
                 }
             }
-        } else {
-            //showingItems = self.model.
-            self.delegate?.didUpdateData()
         }
     }
     
@@ -191,7 +179,7 @@ class ListMoviesViewModel {
     func loadNextPage() {
         switch self.category {
         case .popular:
-            self.getPopularMovies(forceInternet: false, movingToNextPage: true)
+            self.getPopularMovies(movingToNextPage: true)
             break
         case .topRated:
             //self.getTopRatedMovies(forceInternet: false)
@@ -205,13 +193,13 @@ class ListMoviesViewModel {
     func refresh() {
         switch self.category {
         case .popular:
-            self.getPopularMovies(forceInternet: true)
+            self.getPopularMovies()
             break
         case .topRated:
-            self.getTopRatedMovies(forceInternet: true)
+            self.getTopRatedMovies()
             break
         case .upcoming:
-            self.getUpcomingMovies(forceInternet: true)
+            self.getUpcomingMovies()
             break
         }
     }

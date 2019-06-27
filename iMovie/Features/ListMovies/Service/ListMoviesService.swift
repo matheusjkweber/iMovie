@@ -10,76 +10,82 @@ import Foundation
 
 class ListMoviesService {
     let manager: NetworkManager
+    let coreDataManager: CoreDataManager
     var movieResponse: ItemResponse<MovieModel>? = nil
     var tvShowResponse: ItemResponse<TVShowModel>? = nil
     var failed: Bool = false
     var error: NetworkResponse?
     
-    init(manager: NetworkManager = NetworkManager()) {
+    init(manager: NetworkManager = NetworkManager(), coreDataManager: CoreDataManager = CoreDataManager()) {
         self.manager = manager
+        self.coreDataManager = coreDataManager
     }
     
-    func getPopular(pageMovie: Int?,
-                    pageTVShow: Int?,
-                    success: @escaping (_ results: [ShowMediaModel], _ movieResponse: ItemResponse<MovieModel>?, _ tvShowResponse: ItemResponse<TVShowModel>?) -> (),
+    func getPopular(page: Int,
+                    itemsPerPage: Int,
+                    success: @escaping (_ results: [ShowMediaModel], _ maxPage: Int) -> (),
                     failure: @escaping (_ error: NetworkResponse) -> ()) {
         
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
         
-        if let pageMovie = pageMovie {
-            manager.request(request: TheMovieDataBaseAPI.moviePopular(pageMovie), success: { (itemResponse: ItemResponse<MovieModel>) in
-                dispatchGroup.leave()
-                self.movieResponse = itemResponse
-            }) { (error) in
-                self.failed = true
-                self.error = error
-                dispatchGroup.leave()
-            }
-        }
         
-        if let pageTVShow = pageTVShow {
+        if coreDataManager.retrieveNumberOfMedia() >= (itemsPerPage * page) {
+            let medias = coreDataManager.retrieveMedias(limit: itemsPerPage, offset: page * itemsPerPage, orderedBy: .popular)
+            success(medias, coreDataManager.retrieveNumberOfMedia() / itemsPerPage)
+        } else {
+            let dispatchGroup = DispatchGroup()
             dispatchGroup.enter()
-            manager.request(request: TheMovieDataBaseAPI.tvPopular(pageTVShow), success: { (itemResponse: ItemResponse<TVShowModel>) in
+            
+            manager.request(request: TheMovieDataBaseAPI.moviePopular(page), success: { (itemResponse: ItemResponse<MovieModel>) in
+                self.movieResponse = itemResponse
                 dispatchGroup.leave()
-                self.tvShowResponse = itemResponse
             }) { (error) in
                 self.failed = true
                 self.error = error
                 dispatchGroup.leave()
             }
-        }
-        
-        
-        dispatchGroup.notify(queue: .main) {
-            if(self.failed) {
-                if let error = self.error {
-                    failure(error)
-                }
-            } else {
-                var results = [ItemModel]()
-                
-                if let tvResponse = self.tvShowResponse {
-                    results += tvResponse.results
-                }
-                
-                if let movieResponse = self.movieResponse {
-                    results += movieResponse.results
-                }
-                
-                var convertedResult: [ShowMediaModel] = results.map { obj in
-                    if let movielModel = obj as? MovieModel {
-                        return ShowMediaModel(with: movielModel)
-                    } else if let tvShowModel = obj as? TVShowModel {
-                        return ShowMediaModel(with: tvShowModel)
+            
+            dispatchGroup.enter()
+            manager.request(request: TheMovieDataBaseAPI.tvPopular(page), success: { (itemResponse: ItemResponse<TVShowModel>) in
+                self.tvShowResponse = itemResponse
+                dispatchGroup.leave()
+            }) { (error) in
+                self.failed = true
+                self.error = error
+                dispatchGroup.leave()
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                if(self.failed) {
+                    if let error = self.error {
+                        failure(error)
                     }
-                    fatalError("Must give a MovieModel or TVShowModel")
+                } else {
+                    var results = [ItemModel]()
+                    
+                    if let tvResponse = self.tvShowResponse {
+                        results += tvResponse.results
+                    }
+                    
+                    if let movieResponse = self.movieResponse {
+                        results += movieResponse.results
+                    }
+                    
+                    var convertedResult: [ShowMediaModel] = results.map { obj in
+                        if let movielModel = obj as? MovieModel {
+                            return ShowMediaModel(with: movielModel)
+                        } else if let tvShowModel = obj as? TVShowModel {
+                            return ShowMediaModel(with: tvShowModel)
+                        }
+                        fatalError("Must give a MovieModel or TVShowModel")
+                    }
+                    convertedResult = convertedResult.sorted(by: { $0.popularity > $1.popularity })
+                    self.coreDataManager.addMultipleMedia(showMediaArray: convertedResult)
+                    success(Array(convertedResult.prefix(itemsPerPage)), (convertedResult.count / itemsPerPage))
                 }
-                convertedResult = convertedResult.sorted(by: { $0.popularity > $1.popularity })
-                success(convertedResult, self.movieResponse, self.tvShowResponse)
             }
         }
     }
+    
     func getPopularMovies(page:Int,
                           success: @escaping (_ notice: ItemResponse<MovieModel>) -> (),
                           failure: @escaping (_ error: NetworkResponse) -> ()) {

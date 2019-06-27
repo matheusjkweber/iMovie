@@ -33,6 +33,9 @@ class ListMoviesModel {
     var topRated: [ShowMediaModel]
     var upcoming: [ShowMediaModel]
     
+    var actualPage: Int = 1
+    var maxPages: Int = 2
+    
     var pagesTvShow: Page
     var pagesMovie: Page
     

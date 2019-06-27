@@ -27,9 +27,10 @@
 		2F2E23B022C0321500EAA5D4 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E23A622C0321500EAA5D4 /* HTTPMethod.swift */; };
 		2F2E23B122C0321500EAA5D4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E23A722C0321500EAA5D4 /* Router.swift */; };
 		2F2E23B222C0321500EAA5D4 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E23A822C0321500EAA5D4 /* EndPointType.swift */; };
-		2F322F7522C3B4C10001DCE6 /* iMovieDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7322C3B4C10001DCE6 /* iMovieDataModel.xcdatamodeld */; };
+		2F322F7522C3B4C10001DCE6 /* iMovie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7322C3B4C10001DCE6 /* iMovie.xcdatamodeld */; };
 		2F322F7722C3E5370001DCE6 /* TVShowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7622C3E5360001DCE6 /* TVShowModel.swift */; };
 		2F322F7922C3E91D0001DCE6 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7822C3E91D0001DCE6 /* ItemModel.swift */; };
+		2F322F7E22C4470B0001DCE6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7D22C4470B0001DCE6 /* CoreDataManager.swift */; };
 		2F5F743C22C10F9100CEF858 /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5F743B22C10F9100CEF858 /* MoviesResponse.swift */; };
 		2FC81B9622C1AC0400DCF992 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81B9522C1AC0400DCF992 /* BaseViewController.swift */; };
 		2FC81B9822C1B2CE00DCF992 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FC81B9722C1B2CE00DCF992 /* FilterView.xib */; };
@@ -100,6 +101,7 @@
 		2F322F7422C3B4C10001DCE6 /* iMovieDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMovieDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2F322F7622C3E5360001DCE6 /* TVShowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowModel.swift; sourceTree = "<group>"; };
 		2F322F7822C3E91D0001DCE6 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		2F322F7D22C4470B0001DCE6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2F5F743B22C10F9100CEF858 /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		2FC81B9522C1AC0400DCF992 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2FC81B9722C1B2CE00DCF992 /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		2F2E239922C0321500EAA5D4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				2F322F7C22C446FE0001DCE6 /* CoreDataManager */,
 				2F2E239A22C0321500EAA5D4 /* Mock */,
 				2F2E239C22C0321500EAA5D4 /* Encoding */,
 				2F2E23A022C0321500EAA5D4 /* Manager */,
@@ -301,7 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				2F2E236022C02FA900EAA5D4 /* AppDelegate.swift */,
-				2F322F7322C3B4C10001DCE6 /* iMovieDataModel.xcdatamodeld */,
+				2F322F7322C3B4C10001DCE6 /* iMovie.xcdatamodeld */,
 				2FD8DEBC22C039DC00D72C9D /* AppDelegate+Ext.swift */,
 				2F2E236922C02FAA00EAA5D4 /* LaunchScreen.storyboard */,
 				2F2E236722C02FAA00EAA5D4 /* Assets.xcassets */,
@@ -405,6 +408,14 @@
 				2F322F7822C3E91D0001DCE6 /* ItemModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2F322F7C22C446FE0001DCE6 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				2F322F7D22C4470B0001DCE6 /* CoreDataManager.swift */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 		2FC81B9422C1ABED00DCF992 /* ViewController */ = {
@@ -804,8 +815,9 @@
 				2F2E23AD22C0321500EAA5D4 /* NetworkManager.swift in Sources */,
 				2F5F743C22C10F9100CEF858 /* MoviesResponse.swift in Sources */,
 				2F2E23AF22C0321500EAA5D4 /* HTTPTask.swift in Sources */,
+				2F322F7E22C4470B0001DCE6 /* CoreDataManager.swift in Sources */,
 				2FD8DEC322C03C0200D72C9D /* ListMoviesViewModel.swift in Sources */,
-				2F322F7522C3B4C10001DCE6 /* iMovieDataModel.xcdatamodeld in Sources */,
+				2F322F7522C3B4C10001DCE6 /* iMovie.xcdatamodeld in Sources */,
 				2F2E23B122C0321500EAA5D4 /* Router.swift in Sources */,
 				2F2E236122C02FA900EAA5D4 /* AppDelegate.swift in Sources */,
 				2F2E23AC22C0321500EAA5D4 /* URLParameterEnconding.swift in Sources */,
@@ -1137,13 +1149,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2F322F7322C3B4C10001DCE6 /* iMovieDataModel.xcdatamodeld */ = {
+		2F322F7322C3B4C10001DCE6 /* iMovie.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				2F322F7422C3B4C10001DCE6 /* iMovieDataModel.xcdatamodel */,
 			);
 			currentVersion = 2F322F7422C3B4C10001DCE6 /* iMovieDataModel.xcdatamodel */;
-			path = iMovieDataModel.xcdatamodeld;
+			path = iMovie.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
