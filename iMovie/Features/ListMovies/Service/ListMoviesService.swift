@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import SDWebImage
 
 class ListMoviesService {
     let manager: NetworkManager
@@ -130,9 +132,5 @@ class ListMoviesService {
                 }
             }
         }
-    }
-    
-    func getImageFrom(path: String) {
-        
     }
 }

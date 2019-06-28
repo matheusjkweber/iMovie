@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Type: String {
     case popular = "popularity"

@@ -40,7 +40,11 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
         
         let urlComponents = NSURLComponents(url: route.baseURL.appendingPathComponent(route.path), resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = [route.queryParams, route.queryToken]
+        urlComponents?.queryItems = [route.queryToken]
+        
+        if let queryParams = route.queryParams {
+            urlComponents?.queryItems?.append(queryParams)
+        }
         
         let url = urlComponents?.url ?? route.baseURL.appendingPathComponent(route.path)
         

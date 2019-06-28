@@ -26,6 +26,10 @@ extension TheMovieDataBaseAPI: EndPointType {
         return "https://api.themoviedb.org/3"
     }
     
+    static var imageURL : String {
+        return "https://image.tmdb.org/t/p/original"
+    }
+    
     var baseURL: URL {
         guard let url = URL(string: environmentBaseURL) else {
             fatalError("baseURL could not be configured.")
@@ -50,11 +54,13 @@ extension TheMovieDataBaseAPI: EndPointType {
         }
     }
     
-    var queryParams: URLQueryItem {
+    var queryParams: URLQueryItem? {
         switch self {
         case .moviePopular(let page), .movieTopRated(let page), .movieUpcoming(let page),
              .tvPopular(let page), .tvTopRated(let page), .tvAiringToday(let page):
             return URLQueryItem(name: "page", value: "\(page)")
+        default:
+            return nil
         }
     }
     

@@ -6,7 +6,8 @@ target 'iMovie' do
   use_frameworks!
 
   # Pods for iMovie
-
+  pod 'SDWebImage', '~> 5.0'
+  
   target 'iMovieTests' do
       inherit! :search_paths
       # Pods for testing

@@ -69,7 +69,7 @@
                 <outlet property="movieImageView" destination="4KX-ms-hua" id="6wl-vv-e8L"/>
                 <outlet property="movieTitleLabel" destination="KPe-Oc-R9w" id="xuC-CI-Qna"/>
                 <outlet property="typeLabel" destination="fdR-ZW-zoS" id="waM-2T-V64"/>
-                <outlet property="voteAverageLabel" destination="Scn-NG-7SX" id="NLs-po-MCe"/>
+                <outlet property="voteAverageLabel" destination="Scn-NG-7SX" id="mgA-xr-LfM"/>
             </connections>
             <point key="canvasLocation" x="53.623188405797109" y="-258.48214285714283"/>
         </collectionViewCell>

@@ -15,6 +15,8 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var voteAverageLabel: UILabel!
     
+    var image: UIImage?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -26,6 +28,12 @@ class ListMoviesCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        movieImageView.image = UIImage(named: "no-image")
+    }
 }
 
 extension ListMoviesCollectionViewCell {
@@ -34,6 +42,11 @@ extension ListMoviesCollectionViewCell {
         typeLabel.text = type
         voteAverageLabel.text = String(format: "%.2f", voteAverage)
         setLayout()
+    }
+    
+    func setImage(image: UIImage) {
+        self.image = image
+        self.movieImageView.image = image
     }
     
     fileprivate func setLayout() {

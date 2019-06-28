@@ -61,7 +61,7 @@ class ShowMediaModel {
         self.posterPath = mediaEntity.value(forKey: "posterPath") as? String ?? ""
     }
     
-    func getPosterImage(success: @escaping (_ image: UIImage) -> ()) {
-        
+    func getImageURL() -> URL? {
+        return URL(string: "\(TheMovieDataBaseAPI.imageURL)/\(self.posterPath)") ?? nil
     }
 }

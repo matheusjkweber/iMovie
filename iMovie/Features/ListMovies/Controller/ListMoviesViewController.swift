@@ -121,6 +121,10 @@ extension ListMoviesViewController {
             voteAverage: itemModel.voteAverage
         )
         
+        if let url = itemModel.getImageURL() {
+            cell.movieImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "no-image"))
+        }
+
         return cell
     }
     

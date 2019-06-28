@@ -21,7 +21,6 @@
 		2F322F7722C3E5370001DCE6 /* TVShowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7622C3E5360001DCE6 /* TVShowModel.swift */; };
 		2F322F7922C3E91D0001DCE6 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7822C3E91D0001DCE6 /* ItemModel.swift */; };
 		2F322F8022C54C250001DCE6 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F7F22C54C250001DCE6 /* Date+Ext.swift */; };
-		2F322F8222C5512C0001DCE6 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F8122C5512C0001DCE6 /* ImageCache.swift */; };
 		2F322F9522C63B240001DCE6 /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F8522C63B240001DCE6 /* NetworkManagerMock.swift */; };
 		2F322F9622C63B240001DCE6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F8722C63B240001DCE6 /* CoreDataManager.swift */; };
 		2F322F9722C63B240001DCE6 /* ParameterEnconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322F8922C63B240001DCE6 /* ParameterEnconding.swift */; };
@@ -94,7 +93,6 @@
 		2F322F7622C3E5360001DCE6 /* TVShowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowModel.swift; sourceTree = "<group>"; };
 		2F322F7822C3E91D0001DCE6 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		2F322F7F22C54C250001DCE6 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		2F322F8122C5512C0001DCE6 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		2F322F8522C63B240001DCE6 /* NetworkManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
 		2F322F8722C63B240001DCE6 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2F322F8922C63B240001DCE6 /* ParameterEnconding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEnconding.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 				2F2E239022C0320400EAA5D4 /* ProgressView.swift */,
 				2F2E239122C0320400EAA5D4 /* ToastView.swift */,
 				2F322F7F22C54C250001DCE6 /* Date+Ext.swift */,
-				2F322F8122C5512C0001DCE6 /* ImageCache.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -546,6 +543,7 @@
 				2F2E235922C02FA900EAA5D4 /* Sources */,
 				2F2E235A22C02FA900EAA5D4 /* Frameworks */,
 				2F2E235B22C02FA900EAA5D4 /* Resources */,
+				C8B42D7702D2395A5F268A97 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -742,6 +740,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8B42D7702D2395A5F268A97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D7155D1E86483DE0F152CD93 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -804,7 +824,6 @@
 				2FD8DED622C0F25300D72C9D /* ListMoviesService.swift in Sources */,
 				2F2E239622C0320500EAA5D4 /* ToastView.swift in Sources */,
 				2FD8DEC522C03D3900D72C9D /* ListMoviesModel.swift in Sources */,
-				2F322F8222C5512C0001DCE6 /* ImageCache.swift in Sources */,
 				2F322F7722C3E5370001DCE6 /* TVShowModel.swift in Sources */,
 				2FD8DEC922C0425000D72C9D /* ListMoviesCollectionViewCell.swift in Sources */,
 				2F322F9B22C63B240001DCE6 /* TheMovieDataBaseEndpoint.swift in Sources */,
