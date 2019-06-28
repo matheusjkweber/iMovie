@@ -131,4 +131,8 @@ class ListMoviesService {
             }
         }
     }
+    
+    func getImageFrom(path: String) {
+        
+    }
 }

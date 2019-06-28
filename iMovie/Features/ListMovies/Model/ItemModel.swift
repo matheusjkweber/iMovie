@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ItemType {
     case tvShow
@@ -24,6 +25,7 @@ class ShowMediaModel {
     let id: Int
     let voteAverage: Float
     let releaseDate: Date
+    let posterPath: String
     
     init(with tvShowModel: TVShowModel) {
         self.id = tvShowModel.id
@@ -32,6 +34,7 @@ class ShowMediaModel {
         self.type = MediaType.tvShows
         self.voteAverage = tvShowModel.vote_average
         self.releaseDate = Date.createFromString(date: tvShowModel.release_date)
+        self.posterPath = tvShowModel.poster_path
     }
     
     init(with movieModel: MovieModel) {
@@ -41,6 +44,7 @@ class ShowMediaModel {
         self.type = MediaType.movies
         self.voteAverage = movieModel.vote_average
         self.releaseDate = Date.createFromString(date: movieModel.release_date)
+        self.posterPath = movieModel.poster_path
     }
     
     init(from mediaEntity: Media) {
@@ -54,5 +58,10 @@ class ShowMediaModel {
         
         self.voteAverage = mediaEntity.value(forKey: "voteAverage") as? Float ?? 0
         self.releaseDate = mediaEntity.value(forKey: "releaseDate") as? Date ?? Date()
+        self.posterPath = mediaEntity.value(forKey: "posterPath") as? String ?? ""
+    }
+    
+    func getPosterImage(success: @escaping (_ image: UIImage) -> ()) {
+        
     }
 }
