@@ -1,9 +1,5 @@
 # iMovie
 
-[TOC]
-
-#### Structure
-
 - Network Layer:
 		The Network layer is responsible to make the requests to the back end, hold a Endpoint enum that contains all the requests, parameters, tokens, etc.
 - Persistence Layer:
