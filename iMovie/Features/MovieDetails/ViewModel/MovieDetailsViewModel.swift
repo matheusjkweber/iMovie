@@ -7,11 +7,48 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieDetailsViewModel {
-    private let model: ItemModel
+    private let model: ShowMediaModel
     
-    public init(model: ItemModel) {
+    var title: String {
+        get {
+            return model.title
+        }
+    }
+    
+    var releaseDate: String {
+        get {
+            return model.releaseDate.stringFromDate()
+        }
+    }
+    
+    var voteAverage: String {
+        get {
+            return String(format: "%.2f", model.voteAverage)
+        }
+    }
+    
+    var originalLanguage: String {
+        get {
+            return model.originalLanguage
+        }
+    }
+    
+    var overview: String {
+        get {
+            return model.overview
+        }
+    }
+    
+    var image: UIImage? {
+        get {
+            return model.image
+        }
+    }
+    
+    public init(model: ShowMediaModel) {
         self.model = model
     }
 }

@@ -59,8 +59,6 @@ extension TheMovieDataBaseAPI: EndPointType {
         case .moviePopular(let page), .movieTopRated(let page), .movieUpcoming(let page),
              .tvPopular(let page), .tvTopRated(let page), .tvAiringToday(let page):
             return URLQueryItem(name: "page", value: "\(page)")
-        default:
-            return nil
         }
     }
     

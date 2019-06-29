@@ -122,7 +122,9 @@ extension ListMoviesViewController {
         )
         
         if let url = itemModel.getImageURL() {
-            cell.movieImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "no-image"))
+            cell.movieImageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "no-image"), options: [], completed: { (image, _, _, _) in
+                itemModel.image = image
+            })
         }
 
         return cell
@@ -135,9 +137,12 @@ extension ListMoviesViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let movieModel = viewModel?.showingItems[indexPath.row] {
-//            //self.navigationController?.pushViewController(MovieDetailsViewController(viewModel: MovieDetailsViewModel(model: movieModel)), animated: true)
-//        }
+        if let movieModel = viewModel?.showingItems[indexPath.row] {
+            let movieDetailViewModel = MovieDetailsViewModel(model: movieModel)
+            let detailsMovieController = MovieDetailsViewController(viewModel: movieDetailViewModel)
+            
+            self.navigationController?.pushViewController(detailsMovieController, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

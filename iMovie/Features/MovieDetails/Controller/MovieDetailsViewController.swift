@@ -11,7 +11,13 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
     var viewModel: MovieDetailsViewModel?
     
-    init(viewModel: MovieDetailsViewModel) {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imageLabel: UIImageView!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var votesLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    init(viewModel: MovieDetailsViewModel){
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,6 +33,14 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func setup() {
-        self.title = "Movie Title"
+        self.title = self.viewModel?.title
+        self.titleLabel.text = self.viewModel?.title
+        self.releaseDateLabel.text = self.viewModel?.releaseDate
+        self.votesLabel.text = "Votes: \(self.viewModel?.voteAverage ?? "0")"
+        self.descriptionLabel.text = self.viewModel?.overview
+        
+        if let image = self.viewModel?.image {
+            self.imageLabel.image = image
+        }
     }
 }

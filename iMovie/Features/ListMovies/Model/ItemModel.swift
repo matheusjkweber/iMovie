@@ -26,6 +26,9 @@ class ShowMediaModel {
     let voteAverage: Float
     let releaseDate: Date
     let posterPath: String
+    let originalLanguage: String
+    let overview: String
+    var image: UIImage?
     
     init(with tvShowModel: TVShowModel) {
         self.id = tvShowModel.id
@@ -35,6 +38,8 @@ class ShowMediaModel {
         self.voteAverage = tvShowModel.vote_average
         self.releaseDate = Date.createFromString(date: tvShowModel.release_date)
         self.posterPath = tvShowModel.poster_path
+        self.originalLanguage = tvShowModel.original_language
+        self.overview = tvShowModel.overview
     }
     
     init(with movieModel: MovieModel) {
@@ -45,6 +50,8 @@ class ShowMediaModel {
         self.voteAverage = movieModel.vote_average
         self.releaseDate = Date.createFromString(date: movieModel.release_date)
         self.posterPath = movieModel.poster_path
+        self.originalLanguage = movieModel.original_language
+        self.overview = movieModel.overview
     }
     
     init(from mediaEntity: Media) {
@@ -59,6 +66,8 @@ class ShowMediaModel {
         self.voteAverage = mediaEntity.value(forKey: "voteAverage") as? Float ?? 0
         self.releaseDate = mediaEntity.value(forKey: "releaseDate") as? Date ?? Date()
         self.posterPath = mediaEntity.value(forKey: "posterPath") as? String ?? ""
+        self.originalLanguage = mediaEntity.value(forKey: "originalLanguage") as? String ?? ""
+        self.overview = mediaEntity.value(forKey: "overview") as? String ?? ""
     }
     
     func getImageURL() -> URL? {

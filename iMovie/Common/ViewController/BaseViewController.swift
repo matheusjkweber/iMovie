@@ -61,12 +61,7 @@ extension BaseViewController {
         filterButton.addTarget(self, action: #selector(didClickedFilterButton), for: .touchUpInside)
         let filterBarButton = UIBarButtonItem(customView: filterButton)
         
-        let searchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-        searchButton.setImage(UIImage(named: "ic_search"), for: .normal)
-        searchButton.addTarget(self, action: #selector(didClickedFilterButton), for: .touchUpInside)
-        let searchBarButton = UIBarButtonItem(customView: searchButton)
-        
-        self.navigationItem.rightBarButtonItems = [filterBarButton, searchBarButton]
+        self.navigationItem.rightBarButtonItems = [filterBarButton]
     }
     
     @objc func didClickedFilterButton() {

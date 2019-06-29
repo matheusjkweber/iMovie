@@ -47,6 +47,8 @@ class CoreDataManager {
             mediaObject.setValue(mediaModel.type.rawValue, forKey: "type")
             mediaObject.setValue(mediaModel.title, forKey: "title")
             mediaObject.setValue(mediaModel.voteAverage, forKey: "voteAverage")
+            mediaObject.setValue(mediaModel.originalLanguage, forKey: "originalLanguage")
+            mediaObject.setValue(mediaModel.overview, forKey: "overview")
             
             do {
                 try managedContext.save()
