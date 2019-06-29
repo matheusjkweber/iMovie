@@ -1,5 +1,5 @@
 //
-//  NubankEndpoint.swift
+//  TheMovieDataBaseEndpoint.swift
 //  NetworkLayer
 //
 //  Created by Matheus Weber on 30/03/18.
