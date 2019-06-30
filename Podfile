@@ -11,14 +11,14 @@ target 'iMovie' do
   target 'iMovieTests' do
       inherit! :search_paths
       # Pods for testing
-      pod 'Nimble', '~> 7.0.2'
+      pod 'Nimble', '~> 8.0.1'
       pod 'Nimble-Snapshots'
       pod 'Quick'
     end
   
     target 'iMovieUITests' do
       inherit! :search_paths
-      pod 'Nimble', '~> 7.0.2'
+      pod 'Nimble', '~> 8.0.1'
       pod 'Quick'
       pod 'KIF', :configurations => ['Debug']
     
