@@ -40,7 +40,6 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        populateMovies()
         setup()
     }
     
@@ -73,11 +72,6 @@ class ListMoviesViewController: BaseViewController, UICollectionViewDataSource, 
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         collectionView.addSubview(refreshControl)
-    }
-    
-    func populateMovies() {
-//        let arrayMovies = [MovieModel(imagePath: "", name: "Test"), MovieModel(imagePath: "", name: "Test 1"), MovieModel(imagePath: "", name: "Test 2"), MovieModel(imagePath: "", name: "Test 3")]
-//        self.viewModel?.rawMovies = arrayMovies
     }
     
     @IBAction func segmentedDidChange(_ sender: Any) {

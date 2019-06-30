@@ -38,19 +38,6 @@ extension BaseViewController {
         errorView?.setup(errorMessage: "Some error has ocurred, please try again.")
         return errorView
     }
-    
-    func getInternetErrorView() -> ErrorView? {
-        errorView?.setup(errorMessage: "No internet connection, please connect to internet and try again")
-        return errorView
-    }
-    
-    func setupForSuccess() {
-        
-    }
-    
-    func setupLayoutForSuccess() {
-        
-    }
 }
 
 //MARK Navigation Controller
@@ -70,15 +57,6 @@ extension BaseViewController {
     
     @objc func didClickedSearchButton() {
         
-    }
-    
-    func configureFilterViewLayout(filterView: FilterView) {
-        let filterViewHeightConstraint = NSLayoutConstraint(item: filterView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 210)
-        let filterViewLeftConstraint = NSLayoutConstraint(item: filterView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
-        let filterViewRightConstraint = NSLayoutConstraint(item: filterView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
-        let filterViewBottomConstraint = NSLayoutConstraint(item: filterView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([filterViewHeightConstraint, filterViewLeftConstraint, filterViewRightConstraint, filterViewBottomConstraint])
     }
 }
 

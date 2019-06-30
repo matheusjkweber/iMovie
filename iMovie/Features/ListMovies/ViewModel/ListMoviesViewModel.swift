@@ -31,7 +31,7 @@ class ListMoviesViewModel {
         }
     }
     
-    public init(model: ListMoviesModel, state: ViewState<ButtonAction>, service: ListMoviesService = ListMoviesService(), category: Type = .popular) {
+    public init(model: ListMoviesModel = ListMoviesModel(), state: ViewState<ButtonAction> = .loading, service: ListMoviesService = ListMoviesService(), category: Type = .popular) {
         self.model = model
         self.state = state
         self.service = service
@@ -54,20 +54,18 @@ class ListMoviesViewModel {
         }
     }
     
-    func getMustShowNumberOfItems() -> Int {
-        switch self.category {
-        case .popular:
-            return (self.model.pagesMovie.pagePopular + self.model.pagesTvShow.pagePopular) * itemsPerPage
-        case .topRated:
-            return (self.model.pagesMovie.pageTopRated + self.model.pagesTvShow.pageTopRated) * itemsPerPage
-        case .upcoming:
-            return (self.model.pagesMovie.pageUpcoming + self.model.pagesTvShow.pageUpcoming) * itemsPerPage
+    var actualPage: Int {
+        get {
+            return self.model.actualPage
+        }
+        set {
+            self.model.actualPage = newValue
         }
     }
     
     func getPopular(movingToNextPage: Bool = false, forceInternet: Bool = false) {
         if movingToNextPage {
-            self.model.actualPage += 1
+            self.actualPage += 1
         }
         
         self.state = .loading

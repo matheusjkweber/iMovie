@@ -1,0 +1,109 @@
+{
+    "page": 1,
+    "total_results": 19817,
+    "total_pages": 991,
+    "results": [
+        {
+            "vote_count": 567,
+            "id": 301528,
+            "video": false,
+            "vote_average": 7.7,
+            "title": "Toy Story 4",
+            "popularity": 301.255,
+            "poster_path": "/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg",
+            "original_language": "en",
+            "original_title": "Toy Story 4",
+            "genre_ids": [
+                12,
+                16,
+                35,
+                10751
+            ],
+            "backdrop_path": "/q62bpQ67qaXY0u6b2wFEnQYIbPd.jpg",
+            "adult": false,
+            "overview": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
+            "release_date": "2019-06-19"
+        },
+        {
+            "vote_count": 40,
+            "id": 429617,
+            "video": false,
+            "vote_average": 6.2,
+            "title": "Spider-Man: Far from Home",
+            "popularity": 197.698,
+            "poster_path": "/2cAc4qH9Uh2NtSujJ90fIAMrw7T.jpg",
+            "original_language": "en",
+            "original_title": "Spider-Man: Far from Home",
+            "genre_ids": [
+                28,
+                12,
+                878
+            ],
+            "backdrop_path": "/dihW2yTsvQlust7mSuAqJDtqW7k.jpg",
+            "adult": false,
+            "overview": "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
+            "release_date": "2019-06-28"
+        },
+        {
+            "vote_count": 1007,
+            "id": 320288,
+            "video": false,
+            "vote_average": 6.3,
+            "title": "Dark Phoenix",
+            "popularity": 176.97,
+            "poster_path": "/kZv92eTc0Gg3mKxqjjDAM73z9cy.jpg",
+            "original_language": "en",
+            "original_title": "Dark Phoenix",
+            "genre_ids": [
+                878,
+                28
+            ],
+            "backdrop_path": "/phxiKFDvPeQj4AbkvJLmuZEieDU.jpg",
+            "adult": false,
+            "overview": "The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.",
+            "release_date": "2019-06-05"
+        },
+        {
+            "vote_count": 2020,
+            "id": 287947,
+            "video": false,
+            "vote_average": 7.1,
+            "title": "Shazam!",
+            "popularity": 174.846,
+            "poster_path": "/xnopI5Xtky18MPhK40cZAGAOVeV.jpg",
+            "original_language": "en",
+            "original_title": "Shazam!",
+            "genre_ids": [
+                28,
+                35,
+                14
+            ],
+            "backdrop_path": "/bi4jh0Kt0uuZGsGJoUUfqmbrjQg.jpg",
+            "adult": false,
+            "overview": "A boy is given the ability to become an adult superhero in times of need with a single magic word.",
+            "release_date": "2019-03-23"
+        },
+        {
+            "vote_count": 16,
+            "id": 566555,
+            "video": false,
+            "vote_average": 4.8,
+            "title": "Detective Conan: The Fist of Blue Sapphire",
+            "popularity": 144.272,
+            "poster_path": "/86Y6qM8zTn3PFVfCm9J98Ph7JEB.jpg",
+            "original_language": "ja",
+            "original_title": "名探偵コナン 紺青の拳（フィスト）",
+            "genre_ids": [
+                16,
+                28,
+                18,
+                9648,
+                35
+            ],
+            "backdrop_path": "/wf6VDSi4aFCZfuD8sX8JAKLfJ5m.jpg",
+            "adult": false,
+            "overview": "23rd movie in the \"Detective Conan\" franchise.",
+            "release_date": "2019-04-12"
+            }
+    ]
+}
