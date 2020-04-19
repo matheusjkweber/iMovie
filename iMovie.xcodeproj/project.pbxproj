@@ -38,6 +38,16 @@
 		2F322FB222C853610001DCE6 /* MovieDetailsViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F322FB122C853610001DCE6 /* MovieDetailsViewControllerSpec.swift */; };
 		2F322FB322C854D30001DCE6 /* ListTvShowsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F322FAA22C836350001DCE6 /* ListTvShowsMock.json */; };
 		2F5F743C22C10F9100CEF858 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5F743B22C10F9100CEF858 /* ItemResponse.swift */; };
+		2F6D344B230C96280006A415 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D343D230C96280006A415 /* CoreDataManager.swift */; };
+		2F6D344C230C96280006A415 /* ParameterEnconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D343F230C96280006A415 /* ParameterEnconding.swift */; };
+		2F6D344D230C96280006A415 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3440230C96280006A415 /* JSONParameterEncoder.swift */; };
+		2F6D344E230C96280006A415 /* URLParameterEnconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3441230C96280006A415 /* URLParameterEnconding.swift */; };
+		2F6D344F230C96280006A415 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3443230C96280006A415 /* NetworkManager.swift */; };
+		2F6D3450230C96280006A415 /* VidalinkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3445230C96280006A415 /* VidalinkEndpoint.swift */; };
+		2F6D3451230C96280006A415 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3447230C96280006A415 /* HTTPTask.swift */; };
+		2F6D3452230C96280006A415 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3448230C96280006A415 /* HTTPMethod.swift */; };
+		2F6D3453230C96280006A415 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D3449230C96280006A415 /* Router.swift */; };
+		2F6D3454230C96280006A415 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D344A230C96280006A415 /* EndPointType.swift */; };
 		2FC81B9622C1AC0400DCF992 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81B9522C1AC0400DCF992 /* BaseViewController.swift */; };
 		2FC81B9822C1B2CE00DCF992 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FC81B9722C1B2CE00DCF992 /* FilterView.xib */; };
 		2FC81B9A22C1B3D900DCF992 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81B9922C1B3D900DCF992 /* FilterView.swift */; };
@@ -113,6 +123,16 @@
 		2F322FAE22C83A4C0001DCE6 /* iMovieUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iMovieUITests.swift; sourceTree = "<group>"; };
 		2F322FB122C853610001DCE6 /* MovieDetailsViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewControllerSpec.swift; sourceTree = "<group>"; };
 		2F5F743B22C10F9100CEF858 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
+		2F6D343D230C96280006A415 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		2F6D343F230C96280006A415 /* ParameterEnconding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEnconding.swift; sourceTree = "<group>"; };
+		2F6D3440230C96280006A415 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		2F6D3441230C96280006A415 /* URLParameterEnconding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEnconding.swift; sourceTree = "<group>"; };
+		2F6D3443230C96280006A415 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2F6D3445230C96280006A415 /* VidalinkEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VidalinkEndpoint.swift; sourceTree = "<group>"; };
+		2F6D3447230C96280006A415 /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		2F6D3448230C96280006A415 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		2F6D3449230C96280006A415 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		2F6D344A230C96280006A415 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		2FC81B9522C1AC0400DCF992 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2FC81B9722C1B2CE00DCF992 /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		2FC81B9922C1B3D900DCF992 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -365,6 +385,7 @@
 		2F322F8322C63B240001DCE6 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				2F6D343B230C96280006A415 /* API */,
 				2F322F8622C63B240001DCE6 /* CoreDataManager */,
 				2F322F8822C63B240001DCE6 /* Encoding */,
 				2F322F8C22C63B240001DCE6 /* Manager */,
@@ -461,6 +482,63 @@
 				2F322FB122C853610001DCE6 /* MovieDetailsViewControllerSpec.swift */,
 			);
 			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		2F6D343B230C96280006A415 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D343C230C96280006A415 /* CoreDataManager */,
+				2F6D343E230C96280006A415 /* Encoding */,
+				2F6D3442230C96280006A415 /* Manager */,
+				2F6D3444230C96280006A415 /* EndPoint */,
+				2F6D3446230C96280006A415 /* Service */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		2F6D343C230C96280006A415 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D343D230C96280006A415 /* CoreDataManager.swift */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		2F6D343E230C96280006A415 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D343F230C96280006A415 /* ParameterEnconding.swift */,
+				2F6D3440230C96280006A415 /* JSONParameterEncoder.swift */,
+				2F6D3441230C96280006A415 /* URLParameterEnconding.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		2F6D3442230C96280006A415 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D3443230C96280006A415 /* NetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		2F6D3444230C96280006A415 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D3445230C96280006A415 /* VidalinkEndpoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		2F6D3446230C96280006A415 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D3447230C96280006A415 /* HTTPTask.swift */,
+				2F6D3448230C96280006A415 /* HTTPMethod.swift */,
+				2F6D3449230C96280006A415 /* Router.swift */,
+				2F6D344A230C96280006A415 /* EndPointType.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		2FC81B9422C1ABED00DCF992 /* ViewController */ = {
@@ -726,13 +804,24 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/KIF/KIF.framework",
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KIF.framework",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMovieUITests/Pods-iMovieUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		529550999381D44D35930F12 /* [CP] Check Pods Manifest.lock */ = {
@@ -787,13 +876,20 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMovie/Pods-iMovie-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7155D1E86483DE0F152CD93 /* [CP] Check Pods Manifest.lock */ = {
@@ -826,13 +922,26 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMovieTests/Pods-iMovieTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iMovieTests/Pods-iMovieTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMovieTests/Pods-iMovieTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iMovieTests/Pods-iMovieTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMovieTests/Pods-iMovieTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -842,13 +951,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F6D3453230C96280006A415 /* Router.swift in Sources */,
 				2FD8DED222C0588E00D72C9D /* MovieDetailsViewModel.swift in Sources */,
 				2F322F9722C63B240001DCE6 /* ParameterEnconding.swift in Sources */,
 				2FD8DED622C0F25300D72C9D /* ListMoviesService.swift in Sources */,
+				2F6D344E230C96280006A415 /* URLParameterEnconding.swift in Sources */,
 				2FD8DEC522C03D3900D72C9D /* ListMoviesModel.swift in Sources */,
 				2F322F7722C3E5370001DCE6 /* TVShowModel.swift in Sources */,
+				2F6D344D230C96280006A415 /* JSONParameterEncoder.swift in Sources */,
 				2FD8DEC922C0425000D72C9D /* ListMoviesCollectionViewCell.swift in Sources */,
 				2F322F9B22C63B240001DCE6 /* TheMovieDataBaseEndpoint.swift in Sources */,
+				2F6D344C230C96280006A415 /* ParameterEnconding.swift in Sources */,
 				2F322F9E22C63B240001DCE6 /* Router.swift in Sources */,
 				2FD8DEBD22C039DC00D72C9D /* AppDelegate+Ext.swift in Sources */,
 				2FD8DEDE22C0F61000D72C9D /* ErrorView.swift in Sources */,
@@ -857,12 +970,18 @@
 				2F322F9A22C63B240001DCE6 /* NetworkManager.swift in Sources */,
 				2F322F9D22C63B240001DCE6 /* HTTPMethod.swift in Sources */,
 				2F322F9822C63B240001DCE6 /* JSONParameterEncoder.swift in Sources */,
+				2F6D3451230C96280006A415 /* HTTPTask.swift in Sources */,
+				2F6D3454230C96280006A415 /* EndPointType.swift in Sources */,
+				2F6D3450230C96280006A415 /* VidalinkEndpoint.swift in Sources */,
 				2F322F9922C63B240001DCE6 /* URLParameterEnconding.swift in Sources */,
+				2F6D344F230C96280006A415 /* NetworkManager.swift in Sources */,
 				2FD8DED022C0582100D72C9D /* MovieDetailsViewController.swift in Sources */,
 				2F322F7922C3E91D0001DCE6 /* ItemModel.swift in Sources */,
 				2FD8DEBB22C039B100D72C9D /* NavigationController.swift in Sources */,
 				2FD8DEBF22C03A3A00D72C9D /* ListMoviesViewController.swift in Sources */,
 				2FD8DECC22C042C700D72C9D /* MovieModel.swift in Sources */,
+				2F6D344B230C96280006A415 /* CoreDataManager.swift in Sources */,
+				2F6D3452230C96280006A415 /* HTTPMethod.swift in Sources */,
 				2F322F8022C54C250001DCE6 /* Date+Ext.swift in Sources */,
 				2F5F743C22C10F9100CEF858 /* ItemResponse.swift in Sources */,
 				2FD8DEC322C03C0200D72C9D /* ListMoviesViewModel.swift in Sources */,
